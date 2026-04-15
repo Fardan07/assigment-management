@@ -1,0 +1,10 @@
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagon base -->
+  <path d="M28 2L52 14.5V41.5L28 54L4 41.5V14.5L28 2Z" fill="#3B82F6"/>
+  <!-- Inner bracket left -->
+  <path d="M19 18L12 28L19 38" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Inner bracket right -->
+  <path d="M37 18L44 28L37 38" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Center slash -->
+  <path d="M31 16L25 40" stroke="white" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+</svg>
