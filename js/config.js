@@ -19,7 +19,7 @@ const APP_CONFIG = {
     authBaseUrl: 'https://restforge.dev/api/auth',
 
     // Base URL untuk data/business API
-    apiBaseUrl: 'http://127.0.0.1:3032/api/facility-helpdesk',
+    apiBaseUrl: 'http://10.218.11.116:3032/api/facility-helpdesk',
 
     // Idle timeout dalam menit — logout otomatis jika user tidak aktif (0 = nonaktif)
     idleTimeoutMinutes: 30,
