@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <base href="./" />
+    <title>Laporan Kerusakan - Facility Helpdesk</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="kt_app_body" class="app-default" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true">
+<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+    <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+        <div id="kt_app_header" class="app-header">
+            <div class="app-container container-fluid d-flex flex-stack" id="kt_app_header_container">
+                <div class="d-flex align-items-center d-block d-lg-none ms-n3" title="Show sidebar menu">
+                    <div class="btn btn-icon btn-active-color-primary w-35px h-35px me-2" id="kt_app_sidebar_mobile_toggle">
+                        <i class="ki-outline ki-abstract-14 fs-2"></i>
+                    </div>
+                </div>
+                <div class="page-title">
+                    <h1 class="text-gray-900 fw-bolder m-0">Laporan Kerusakan</h1>
+                </div>
+            </div>
+        </div>
+        <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+            <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle"></div>
+            <div class="d-flex flex-column flex-column-fluid">
+                <div id="kt_app_content" class="app-content flex-column-fluid">
+                    <div id="kt_app_content_container" class="app-container container-fluid">
+                        <div class="card">
+                            <div class="card-header border-0 pt-6">
+                                <h3 class="card-title fw-bolder">Daftar Semua Laporan</h3>
+                            </div>
+                            <div class="card-body pt-2">
+                                <div class="table-responsive">
+                                    <table class="table table-row-bordered align-middle gs-0 gy-3" id="report-table">
+                                        <thead>
+                                            <tr class="fw-bold text-muted bg-light">
+                                                <th>No Laporan</th>
+                                                <th>Judul</th>
+                                                <th>Pelapor</th>
+                                                <th>Kategori</th>
+                                                <th>Urgensi</th>
+                                                <th>Status</th>
+                                                <th>Tanggal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/plugins/global/plugins.bundle.js"></script>
+<script src="assets/js/scripts.bundle.js"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/common.js"></script>
+<script src="js/reports.js"></script>
+</body>
+</html>
