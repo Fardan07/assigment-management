@@ -1,0 +1,7 @@
+{
+  "name": "report-attachment",
+  "label": "Lampiran Laporan",
+  "endpoint": "/report-attachment",
+  "primaryPage": "reports.html",
+  "actions": ["datatables", "create", "update", "delete", "first", "lookup", "read"]
+}

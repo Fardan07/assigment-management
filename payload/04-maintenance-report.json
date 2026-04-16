@@ -1,0 +1,7 @@
+{
+  "name": "maintenance-report",
+  "label": "Laporan Kerusakan",
+  "endpoint": "/maintenance-report",
+  "primaryPage": "reports.html",
+  "actions": ["datatables", "create", "update", "delete", "first", "lookup", "read"]
+}

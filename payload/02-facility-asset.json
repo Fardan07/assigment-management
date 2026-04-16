@@ -1,0 +1,7 @@
+{
+  "name": "facility-asset",
+  "label": "Fasilitas",
+  "endpoint": "/facility-asset",
+  "primaryPage": "facilities.html",
+  "actions": ["datatables", "create", "update", "delete", "first", "lookup", "read"]
+}

@@ -1,0 +1,35 @@
+{
+  "pages": [
+    {
+      "file": "login.html",
+      "type": "auth",
+      "script": "js/login.js"
+    },
+    {
+      "file": "index.html",
+      "type": "dashboard",
+      "script": "js/dashboard.js",
+      "dataSources": [
+        "maintenance-report/datatables",
+        "issue-category/datatables",
+        "facility-asset/datatables",
+        "app-user/datatables"
+      ]
+    },
+    {
+      "file": "reports.html",
+      "type": "crud",
+      "entity": "maintenance-report"
+    },
+    {
+      "file": "facilities.html",
+      "type": "crud",
+      "entity": "facility-asset"
+    },
+    {
+      "file": "users.html",
+      "type": "crud",
+      "entity": "app-user"
+    }
+  ]
+}

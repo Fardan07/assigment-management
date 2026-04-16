@@ -1,0 +1,7 @@
+{
+  "name": "report-comment",
+  "label": "Komentar Laporan",
+  "endpoint": "/report-comment",
+  "primaryPage": "reports.html",
+  "actions": ["datatables", "create", "update", "delete", "first", "lookup", "read"]
+}
