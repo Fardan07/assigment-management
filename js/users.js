@@ -1,11 +1,20 @@
 (function () {
     var allUsers = [];
 
+    function normalizeRole(role) {
+        var r = String(role || '').toUpperCase();
+        if (r === 'USER') return 'REQUESTER';
+        if (r === 'ADMIN') return 'WO_MANAGER';
+        if (r === 'TEKNISI') return 'TECHNICIAN';
+        return r;
+    }
+
     function roleBadge(role) {
-        var r = String(role || "").toUpperCase();
-        if (r === "ADMIN") return '<span class="badge badge-light-danger">ADMIN</span>';
-        if (r === "TEKNISI") return '<span class="badge badge-light-warning">TEKNISI</span>';
-        if (r === "USER") return '<span class="badge badge-light-primary">USER</span>';
+        var r = normalizeRole(role);
+        if (r === 'WO_MANAGER') return '<span class="badge badge-light-danger">WO_MANAGER</span>';
+        if (r === 'TECHNICIAN') return '<span class="badge badge-light-warning">TECHNICIAN</span>';
+        if (r === 'REQUESTER') return '<span class="badge badge-light-primary">REQUESTER</span>';
+        if (r === 'SITE_MANAGER') return '<span class="badge badge-light-info">SITE_MANAGER</span>';
         return '<span class="badge badge-light">' + escapeHtml(role || "-") + '</span>';
     }
 
@@ -46,22 +55,27 @@
             return;
         }
 
-        var admins = rows.filter(function (u) { return String(u.role || '').toUpperCase() === 'ADMIN'; });
-        var users = rows.filter(function (u) { return String(u.role || '').toUpperCase() === 'USER'; });
-        var teknisi = rows.filter(function (u) { return String(u.role || '').toUpperCase() === 'TEKNISI'; });
+        var requesters = rows.filter(function (u) { return normalizeRole(u.role) === 'REQUESTER'; });
+        var woManagers = rows.filter(function (u) { return normalizeRole(u.role) === 'WO_MANAGER'; });
+        var technicians = rows.filter(function (u) { return normalizeRole(u.role) === 'TECHNICIAN'; });
+        var siteManagers = rows.filter(function (u) { return normalizeRole(u.role) === 'SITE_MANAGER'; });
 
         var html = '';
-        if (admins.length > 0) {
-            html += groupHeader('ADMIN', admins.length, 'danger');
-            html += admins.map(userRow).join('');
+        if (requesters.length > 0) {
+            html += groupHeader('REQUESTER', requesters.length, 'primary');
+            html += requesters.map(userRow).join('');
         }
-        if (users.length > 0) {
-            html += groupHeader('USER', users.length, 'primary');
-            html += users.map(userRow).join('');
+        if (woManagers.length > 0) {
+            html += groupHeader('WO_MANAGER', woManagers.length, 'danger');
+            html += woManagers.map(userRow).join('');
         }
-        if (teknisi.length > 0) {
-            html += groupHeader('TEKNISI', teknisi.length, 'warning');
-            html += teknisi.map(userRow).join('');
+        if (technicians.length > 0) {
+            html += groupHeader('TECHNICIAN', technicians.length, 'warning');
+            html += technicians.map(userRow).join('');
+        }
+        if (siteManagers.length > 0) {
+            html += groupHeader('SITE_MANAGER', siteManagers.length, 'info');
+            html += siteManagers.map(userRow).join('');
         }
 
         tbody.innerHTML = html;

@@ -137,32 +137,49 @@
         $(document).ready(function() {
             if (!requireLogin()) return;
 
-            const user = window.auth.getUser();
+            const user = window.auth.currentUser;
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
             $('#user-display-name').text(user.full_name || 'Pengguna');
 
             // Ambil data khusus milik user yang login
-            function fetchUserDashboard() {
-                $.get(`${APP_CONFIG.apiBaseUrl}/work-request?created_by=${user.user_id}`, function(res) {
-                    const reports = res.data || [];
-                    
-                    // Update Stats
-                    $('#stat-user-total').text(reports.length);
-                    $('#stat-user-process').text(reports.filter(r => r.status !== 'CLOSED' && r.status !== 'COMPLETED').length);
-                    $('#stat-user-done').text(reports.filter(r => r.status === 'CLOSED' || r.status === 'COMPLETED').length);
+            async function fetchUserDashboard() {
+                try {
+                    const response = await window.auth.fetch(`${APP_CONFIG.apiBaseUrl}/maintenance-report/datatables`, {
+                        method: 'POST',
+                        body: JSON.stringify({ draw: 1, start: 0, length: 300 })
+                    });
+                    const json = await response.json();
+                    if (!response.ok) throw new Error(json.message || 'Gagal memuat data laporan.');
 
-                    // Render Table
+                    const allReports = json.data || [];
+                    const reports = allReports.filter(r => String(r.reporter_id || '') === String(user.user_id || ''));
+
+                    const inProcessStatuses = ['draft', 'submitted', 'assigned', 'in_progress', 'on_progress', 'pending_review', 'rejected'];
+                    const doneStatuses = ['approved', 'solved', 'closed'];
+
+                    $('#stat-user-total').text(reports.length);
+                    $('#stat-user-process').text(reports.filter(r => inProcessStatuses.includes(String(r.status || '').toLowerCase())).length);
+                    $('#stat-user-done').text(reports.filter(r => doneStatuses.includes(String(r.status || '').toLowerCase())).length);
+
                     let rows = '';
                     reports.slice(0, 5).forEach(r => {
-                        const statusBadge = r.status === 'CLOSED' ? 'badge-light-success' : 'badge-light-warning';
+                        const status = String(r.status || '-').toLowerCase();
+                        const statusBadge = doneStatuses.includes(status) ? 'badge-light-success' : 'badge-light-warning';
                         rows += `
                             <tr>
-                                <td><span class="text-dark fw-bold fs-6">${r.facility_name || 'Fasilitas Umum'}</span></td>
-                                <td class="text-center"><span class="badge ${statusBadge}">${r.status}</span></td>
+                                <td><span class="text-dark fw-bold fs-6">${r.facility_name || r.title || 'Fasilitas Umum'}</span></td>
+                                <td class="text-center"><span class="badge ${statusBadge}">${(r.status || '-')}</span></td>
                                 <td class="text-end text-muted fw-bold">${new Date(r.created_at).toLocaleDateString('id-ID')}</td>
                             </tr>`;
                     });
+
                     $('#user-report-list-body').html(rows || '<tr><td colspan="3" class="text-center">Belum ada laporan.</td></tr>');
-                });
+                } catch (err) {
+                    $('#user-report-list-body').html('<tr><td colspan="3" class="text-center text-danger">Gagal memuat laporan.</td></tr>');
+                }
             }
 
             fetchUserDashboard();

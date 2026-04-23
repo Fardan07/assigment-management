@@ -62,14 +62,75 @@ function requirePermission(permissionName) {
     return true;
 }
 
+function normalizeWorkflowRole(role) {
+    var r = String(role || '').toUpperCase().trim();
+    if (r === 'USER') return 'REQUESTER';
+    if (r === 'ADMIN') return 'WO_MANAGER';
+    if (r === 'TEKNISI') return 'TECHNICIAN';
+    return r;
+}
+
+function guessRoleFromIdentity(user) {
+    if (!user) return '';
+
+    var raw = [user.username, user.email, user.full_name, user.employee_code]
+        .filter(function (v) { return !!v; })
+        .join(' ')
+        .toLowerCase();
+
+    if (!raw) return '';
+    if (raw.indexOf('requester') !== -1 || raw.indexOf('pelapor') !== -1) return 'REQUESTER';
+    if (raw.indexOf('wo_manager') !== -1 || raw.indexOf('wo manager') !== -1 || raw.indexOf('wom') !== -1) return 'WO_MANAGER';
+    if (raw.indexOf('technician') !== -1 || raw.indexOf('teknisi') !== -1) return 'TECHNICIAN';
+    if (raw.indexOf('site_manager') !== -1 || raw.indexOf('site manager') !== -1 || raw.indexOf('sitemanager') !== -1) return 'SITE_MANAGER';
+
+    return '';
+}
+
+function resolveCurrentRole(user) {
+    if (!user) return '';
+
+    if (typeof user.role === 'string') {
+        return normalizeWorkflowRole(user.role);
+    }
+
+    if (user.role && (user.role.code || user.role.name)) {
+        return normalizeWorkflowRole(user.role.code || user.role.name);
+    }
+
+    if (Array.isArray(user.roles) && user.roles.length > 0) {
+        var firstRole = user.roles[0];
+        return normalizeWorkflowRole((firstRole && (firstRole.code || firstRole.name)) || firstRole || '');
+    }
+
+    return guessRoleFromIdentity(user);
+}
+
 /**
  * Sembunyikan menu sidebar yang tidak sesuai permission user.
  * Menu dengan attribute data-permission akan di-hide jika user tidak memiliki permission tersebut.
  * Menu tanpa attribute data-permission selalu ditampilkan (e.g. Dashboard).
  */
 function applySidebarPermissions() {
+    var user = window.auth ? window.auth.currentUser : null;
+    var currentRole = resolveCurrentRole(user);
+
     document.querySelectorAll('.menu-item[data-permission]').forEach(function (el) {
         if (!checkPermission(el.getAttribute('data-permission'))) {
+            el.style.display = 'none';
+        }
+    });
+
+    document.querySelectorAll('.menu-item[data-roles]').forEach(function (el) {
+        var allowed = String(el.getAttribute('data-roles') || '')
+            .split(',')
+            .map(function (item) { return item.trim().toUpperCase(); })
+            .filter(function (item) { return item.length > 0; });
+
+        if (allowed.length === 0) return;
+
+        // Fail-safe: jika role belum terbaca, jangan hide seluruh sidebar.
+        if (currentRole && allowed.indexOf(currentRole) === -1) {
             el.style.display = 'none';
         }
     });
@@ -85,6 +146,55 @@ function checkPermission(permissionName) {
     return window.auth.hasPermission(permissionName);
 }
 
+/**
+ * Sinkronkan role user login dari tabel app_user berdasarkan email/username.
+ * Ini dipakai agar akun auth service tetap bisa dipetakan ke role workflow lokal.
+ */
+async function syncCurrentUserRole() {
+    if (!window.auth || !window.auth.currentUser) return null;
+
+    var currentUser = window.auth.currentUser;
+    var identity = String(currentUser.email || currentUser.username || currentUser.full_name || '').toLowerCase().trim();
+    if (!identity) return currentUser;
+
+    try {
+        var response = await window.auth.fetch(APP_CONFIG.apiBaseUrl + '/app-user/datatables', {
+            method: 'POST',
+            body: JSON.stringify({ draw: 1, start: 0, length: 500 })
+        });
+
+        var json = await response.json();
+        if (!response.ok) return currentUser;
+
+        var match = (json.data || []).find(function (user) {
+            return String(user.email || '').toLowerCase() === identity ||
+                String(user.employee_code || '').toLowerCase() === identity ||
+                String(user.full_name || '').toLowerCase() === identity;
+        });
+
+        if (match) {
+            currentUser.user_id = match.user_id || currentUser.user_id;
+            currentUser.role = normalizeWorkflowRole(match.role);
+            currentUser.employee_code = match.employee_code || currentUser.employee_code;
+            currentUser.full_name = match.full_name || currentUser.full_name;
+            currentUser.department = match.department || currentUser.department;
+            currentUser.job_title = match.job_title || currentUser.job_title;
+            localStorage.setItem(window.auth.STORAGE_KEYS.user, JSON.stringify(currentUser));
+        } else {
+            // Fallback sederhana jika tidak ada kecocokan di app_user
+            var guessedRole = resolveCurrentRole(currentUser);
+            if (guessedRole) {
+                currentUser.role = guessedRole;
+                localStorage.setItem(window.auth.STORAGE_KEYS.user, JSON.stringify(currentUser));
+            }
+        }
+    } catch (err) {
+        console.warn('Role sync skipped:', err.message || err);
+    }
+
+    return currentUser;
+}
+
 
 /**
  * Load sidebar secara dinamis dari file sidebar.html.
@@ -98,13 +208,27 @@ function loadSidebar() {
     var sidebarEl = document.getElementById('kt_app_sidebar');
     if (!sidebarEl) return Promise.resolve();
 
-    return fetch('sidebar.html')
+    return syncCurrentUserRole().then(function () {
+        return fetch('sidebar.html?v=20260417c');
+    })
         .then(function (response) { return response.text(); })
         .then(function (html) {
             sidebarEl.innerHTML = html;
 
             // Set active menu berdasarkan halaman saat ini
+            var currentPath = window.location.pathname || '/';
             var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            var segments = currentPath.split('/').filter(function (s) { return s; });
+            if (!currentPage || currentPage === 'index.html') {
+                if (segments.length > 0) {
+                    var lastSegment = segments[segments.length - 1].toLowerCase();
+                    if (lastSegment === 'reports') currentPage = 'reports.html';
+                    if (lastSegment === 'login') currentPage = 'login.html';
+                    if (lastSegment === 'workflow-technician') currentPage = 'workflow-technician.html';
+                    if (lastSegment === 'workflow-wo-manager') currentPage = 'workflow-wo-manager.html';
+                    if (lastSegment === 'workflow-site-manager') currentPage = 'workflow-site-manager.html';
+                }
+            }
             sidebarEl.querySelectorAll('.menu-link').forEach(function (link) {
                 var href = link.getAttribute('href');
                 if (href === currentPage) {
@@ -116,6 +240,13 @@ function loadSidebar() {
             // Apply permission & render user info
             applySidebarPermissions();
             renderUserInfo();
+
+            var currentUser = window.auth ? window.auth.currentUser : null;
+            var currentRole = resolveCurrentRole(currentUser);
+
+            if (currentRole) {
+                document.body.setAttribute('data-current-role', currentRole);
+            }
 
 
             // Re-init scroll components pada sidebar
@@ -141,11 +272,7 @@ function renderUserInfo() {
         .join('');
 
     // Ambil role pertama untuk display
-    var roleDisplay = '';
-    if (Array.isArray(user.roles) && user.roles.length > 0) {
-        var r = user.roles[0];
-        roleDisplay = typeof r === 'string' ? r : (r.name || r.code || '');
-    }
+    var roleDisplay = resolveCurrentRole(user);
 
     var html = '' +
         '<div class="d-flex align-items-center">' +

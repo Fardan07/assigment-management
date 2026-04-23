@@ -1,13 +1,29 @@
 (function () {
+    function normalizeRole(role) {
+        var r = String(role || '').toUpperCase();
+        if (r === 'USER') return 'REQUESTER';
+        if (r === 'ADMIN') return 'WO_MANAGER';
+        if (r === 'TEKNISI') return 'TECHNICIAN';
+        return r;
+    }
+
     function resolveDisplayRole(user) {
         if (!user) return "-";
-        if (user.role && typeof user.role === "string") return user.role;
+        if (user.role && typeof user.role === "string") return normalizeRole(user.role);
+        if (user.role && (user.role.code || user.role.name)) return normalizeRole(user.role.code || user.role.name);
         if (Array.isArray(user.roles) && user.roles.length > 0) {
             var firstRole = user.roles[0];
-            if (typeof firstRole === "string") return firstRole;
-            if (firstRole && firstRole.code) return firstRole.code;
-            if (firstRole && firstRole.name) return firstRole.name;
+            if (typeof firstRole === "string") return normalizeRole(firstRole);
+            if (firstRole && firstRole.code) return normalizeRole(firstRole.code);
+            if (firstRole && firstRole.name) return normalizeRole(firstRole.name);
         }
+
+        var raw = String(user.username || user.email || user.full_name || '').toLowerCase();
+        if (raw.indexOf('requester') !== -1 || raw.indexOf('pelapor') !== -1) return 'REQUESTER';
+        if (raw.indexOf('wom') !== -1 || raw.indexOf('wo manager') !== -1) return 'WO_MANAGER';
+        if (raw.indexOf('technician') !== -1 || raw.indexOf('teknisi') !== -1) return 'TECHNICIAN';
+        if (raw.indexOf('site manager') !== -1 || raw.indexOf('sitemanager') !== -1) return 'SITE_MANAGER';
+
         return "-";
     }
 
