@@ -1,0 +1,276 @@
+type: collection.insomnia.rest/5.0
+name: Facility-helpdesk
+meta:
+  id: wrk_7y2dej0ab35zjogmxu53y
+  created: 1776217424962
+  modified: 1776217424962
+collection:
+  - name: report-activity
+    meta:
+      id: fld_i0l9yqxjsxb1u4fibn8ejy
+      created: 1776217424962
+      modified: 1776217424962
+      sortKey: -1776217424962
+    children:
+      - url: http://localhost:3000/api/facility-helpdesk/report-activity/datatables
+        name: report-activity/datatables
+        meta:
+          id: req_1q4n6l8xz4k7onjby8brib
+          created: 1776217424962
+          modified: 1776217424962
+          isPrivate: false
+          sortKey: -1776217424962
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "draw": 1,
+              "start": 0,
+              "length": 10,
+              "search": {
+                "value": ""
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-activity/lookup
+        name: report-activity/lookup
+        meta:
+          id: req_vk85ixe0mo6fab97hrc4s
+          created: 1776217424962
+          modified: 1776217424962
+          isPrivate: false
+          sortKey: -1776217423962
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "select": [
+                "activity_id",
+                "report_id"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: x-request-mode
+            value: static
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-activity/create
+        name: report-activity/create
+        meta:
+          id: req_xm63qhqitsbqbk92wj1yrm
+          created: 1776217424962
+          modified: 1776217424962
+          isPrivate: false
+          sortKey: -1776217422962
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "activity_id": "Demo activity_id",
+              "report_id": "Demo report_id",
+              "actor_id": "Demo actor_id",
+              "activity_type": "created",
+              "status_from": "active",
+              "status_to": "active",
+              "activity_note": "Demo activity_note",
+              "activity_at": "Demo activity_at"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-activity/update
+        name: report-activity/update
+        meta:
+          id: req_rvy8i9lreja1rxgn8kgrw3
+          created: 1776217424962
+          modified: 1776217424962
+          isPrivate: false
+          sortKey: -1776217421962
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "activity_id": "Demo activity_id",
+              "report_id": "Demo report_id",
+              "actor_id": "Demo actor_id",
+              "activity_type": "created",
+              "status_from": "active",
+              "status_to": "active",
+              "activity_note": "Demo activity_note",
+              "activity_at": "Demo activity_at"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-activity/first
+        name: report-activity/first
+        meta:
+          id: req_adtyvliltxkflquqlbqjo
+          created: 1776217424962
+          modified: 1776217424962
+          isPrivate: false
+          sortKey: -1776217420962
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": {
+                "key": "activity_id",
+                "value": "Demo activity_id"
+              },
+              "select": [
+                "activity_id",
+                "report_id",
+                "actor_id",
+                "activity_type",
+                "status_from",
+                "status_to",
+                "activity_note",
+                "activity_at"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-activity/delete
+        name: report-activity/delete
+        meta:
+          id: req_8k1022ch8m27jnap2c3cs7
+          created: 1776217424962
+          modified: 1776217424962
+          isPrivate: false
+          sortKey: -1776217419962
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": [
+                {
+                  "key": "activity_id",
+                  "value": "Demo activity_id"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-activity/read
+        name: report-activity/read
+        meta:
+          id: req_04botzg6vhjeowsgavni4c
+          created: 1776217424962
+          modified: 1776217424962
+          isPrivate: false
+          sortKey: -1776217418962
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "page": 1,
+              "per_page": 10,
+              "search_value": "",
+              "search_by": "activity_type"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/health
+        name: health
+        meta:
+          id: req_4wtcbpdukdmpf043xqzl9
+          created: 1776217424962
+          modified: 1776217424962
+          isPrivate: false
+          sortKey: -1776217417962
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_3fw6snwjijos8s3ta6yzol
+    created: 1776217424962
+    modified: 1776217424962
+environments:
+  name: Base Environment
+  meta:
+    id: env_54tflp5hx1l530v4edslgg
+    created: 1776217424962
+    modified: 1776217424962
+    isPrivate: false

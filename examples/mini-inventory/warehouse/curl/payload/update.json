@@ -1,0 +1,10 @@
+{
+  "warehouse_id": "Demo warehouse_id",
+  "warehouse_code": "DMO001",
+  "warehouse_name": "Updated Demo Name",
+  "warehouse_type": "Demo warehouse_type",
+  "address": "Jl. Demo Street No. 123",
+  "city": "Jakarta",
+  "capacity": 100000,
+  "is_active": "Demo is_active"
+}

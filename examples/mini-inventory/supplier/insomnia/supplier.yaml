@@ -1,0 +1,282 @@
+type: collection.insomnia.rest/5.0
+name: Mini-inventory
+meta:
+  id: wrk_jm3bbkf2aoani8xl5makt
+  created: 1776213388002
+  modified: 1776213388002
+collection:
+  - name: supplier
+    meta:
+      id: fld_54b7r0yp8a8fszxhh8le0d
+      created: 1776213388002
+      modified: 1776213388002
+      sortKey: -1776213388002
+    children:
+      - url: http://localhost:3000/api/mini-inventory/supplier/datatables
+        name: supplier/datatables
+        meta:
+          id: req_zkjmovqde7qud6wrbx8s
+          created: 1776213388002
+          modified: 1776213388002
+          isPrivate: false
+          sortKey: -1776213388002
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "draw": 1,
+              "start": 0,
+              "length": 10,
+              "search": {
+                "value": ""
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/supplier/lookup
+        name: supplier/lookup
+        meta:
+          id: req_d11328v89b87lxtrrm8366
+          created: 1776213388002
+          modified: 1776213388002
+          isPrivate: false
+          sortKey: -1776213387002
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "select": [
+                "supplier_id",
+                "supplier_code"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: x-request-mode
+            value: static
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/supplier/create
+        name: supplier/create
+        meta:
+          id: req_4u6rtcba7rwp1pjo8x05c
+          created: 1776213388002
+          modified: 1776213388002
+          isPrivate: false
+          sortKey: -1776213386002
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "supplier_id": "Demo supplier_id",
+              "supplier_code": "DMO001",
+              "supplier_name": "Demo Name",
+              "contact_person": "Demo contact_person",
+              "phone": "+62812345678",
+              "email": "demo@example.com",
+              "address": "Jl. Demo Street No. 123",
+              "city": "Jakarta",
+              "country": "Indonesia",
+              "is_active": "Demo is_active"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/supplier/update
+        name: supplier/update
+        meta:
+          id: req_k235dc9zmnw8czlpasori
+          created: 1776213388002
+          modified: 1776213388002
+          isPrivate: false
+          sortKey: -1776213385002
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "supplier_id": "Demo supplier_id",
+              "supplier_code": "DMO001",
+              "supplier_name": "Updated Demo Name",
+              "contact_person": "Demo contact_person",
+              "phone": "+62812345678",
+              "email": "updated@example.com",
+              "address": "Jl. Demo Street No. 123",
+              "city": "Jakarta",
+              "country": "Indonesia",
+              "is_active": "Demo is_active"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/supplier/first
+        name: supplier/first
+        meta:
+          id: req_pl6p2mpejkdt1ibkvkfjg
+          created: 1776213388002
+          modified: 1776213388002
+          isPrivate: false
+          sortKey: -1776213384002
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": {
+                "key": "supplier_id",
+                "value": "Demo supplier_id"
+              },
+              "select": [
+                "supplier_id",
+                "supplier_code",
+                "supplier_name",
+                "contact_person",
+                "phone",
+                "email",
+                "address",
+                "city",
+                "country",
+                "is_active"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/supplier/delete
+        name: supplier/delete
+        meta:
+          id: req_x2p3326pctnmrjunacy5s
+          created: 1776213388002
+          modified: 1776213388002
+          isPrivate: false
+          sortKey: -1776213383002
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": [
+                {
+                  "key": "supplier_id",
+                  "value": "Demo supplier_id"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/supplier/read
+        name: supplier/read
+        meta:
+          id: req_o3q2h6jil2fjr34hr4peg
+          created: 1776213388002
+          modified: 1776213388002
+          isPrivate: false
+          sortKey: -1776213382002
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "page": 1,
+              "per_page": 10,
+              "search_value": "",
+              "search_by": "supplier_code"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/health
+        name: health
+        meta:
+          id: req_9muytargdgf6urn8m4bie5
+          created: 1776213388002
+          modified: 1776213388002
+          isPrivate: false
+          sortKey: -1776213381002
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_xo3mmczhh3oyosbu20mbe
+    created: 1776213388002
+    modified: 1776213388002
+environments:
+  name: Base Environment
+  meta:
+    id: env_m6odrvsl3zvr65fajhjcs
+    created: 1776213388002
+    modified: 1776213388002
+    isPrivate: false

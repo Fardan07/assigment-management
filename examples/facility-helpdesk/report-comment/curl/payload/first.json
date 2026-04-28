@@ -1,0 +1,14 @@
+{
+  "where": {
+    "key": "comment_id",
+    "value": "Demo comment_id"
+  },
+  "select": [
+    "comment_id",
+    "report_id",
+    "author_id",
+    "comment_text",
+    "is_internal",
+    "created_at"
+  ]
+}

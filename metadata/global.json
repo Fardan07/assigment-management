@@ -1,0 +1,49 @@
+{
+  "version": "2.0.0",
+  "lastUpdated": "2026-04-15T01:43:44.901Z",
+  "totalModules": 4,
+  "totalEndpoints": 27,
+  "modules": {
+    "facility-helpdesk-workbench": {
+      "endpointCount": 6,
+      "databaseType": "postgres"
+    },
+    "facility-helpdesk": {
+      "endpointCount": 7,
+      "databaseType": "postgres",
+      "lastUpdated": "2026-04-15T01:43:44.899Z",
+      "createdAt": "2026-04-15T01:43:10.818Z"
+    },
+    "mini-inventory-workbench": {
+      "endpointCount": 7,
+      "databaseType": "postgres"
+    },
+    "mini-inventory": {
+      "endpointCount": 7,
+      "databaseType": "postgres",
+      "lastUpdated": "2026-04-15T00:37:08.129Z",
+      "createdAt": "2026-04-15T00:36:06.077Z"
+    }
+  },
+  "databaseTypes": {
+    "postgres": 4
+  },
+  "summary": {
+    "endpointsByAction": {
+      "datatables": 14,
+      "create": 14,
+      "update": 14,
+      "delete": 14,
+      "first": 14,
+      "lookup": 14,
+      "read": 14,
+      "createComposite": 2,
+      "updateComposite": 2,
+      "readComposite": 2
+    },
+    "endpointsByDatabase": {
+      "postgres": 14
+    },
+    "recentActivity": []
+  }
+}

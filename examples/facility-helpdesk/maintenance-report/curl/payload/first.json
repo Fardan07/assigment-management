@@ -1,0 +1,33 @@
+{
+  "where": {
+    "key": "report_id",
+    "value": "Demo report_id"
+  },
+  "select": [
+    "report_id",
+    "report_number",
+    "reporter_id",
+    "category_id",
+    "facility_id",
+    "title",
+    "location_floor",
+    "location_room",
+    "location_detail",
+    "description",
+    "urgency",
+    "status",
+    "assigned_to_id",
+    "admin_note",
+    "technician_note",
+    "resolution_note",
+    "photo_before_url",
+    "photo_after_url",
+    "reported_at",
+    "assigned_at",
+    "started_at",
+    "solved_at",
+    "closed_at",
+    "created_at",
+    "updated_at"
+  ]
+}

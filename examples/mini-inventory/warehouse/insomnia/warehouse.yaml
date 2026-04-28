@@ -1,0 +1,276 @@
+type: collection.insomnia.rest/5.0
+name: Mini-inventory
+meta:
+  id: wrk_cwp2trtym15zo0g6dyrbw
+  created: 1776213378200
+  modified: 1776213378200
+collection:
+  - name: warehouse
+    meta:
+      id: fld_si7f3lryfeagohbktf8y
+      created: 1776213378200
+      modified: 1776213378200
+      sortKey: -1776213378200
+    children:
+      - url: http://localhost:3000/api/mini-inventory/warehouse/datatables
+        name: warehouse/datatables
+        meta:
+          id: req_7aswgh6ff9524r8wnajnqi
+          created: 1776213378200
+          modified: 1776213378200
+          isPrivate: false
+          sortKey: -1776213378200
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "draw": 1,
+              "start": 0,
+              "length": 10,
+              "search": {
+                "value": ""
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/warehouse/lookup
+        name: warehouse/lookup
+        meta:
+          id: req_ey74huaguuau46x7hgkuap
+          created: 1776213378200
+          modified: 1776213378200
+          isPrivate: false
+          sortKey: -1776213377200
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "select": [
+                "warehouse_id",
+                "warehouse_code"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: x-request-mode
+            value: static
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/warehouse/create
+        name: warehouse/create
+        meta:
+          id: req_hycto8vzdkel02o6cqmeaq
+          created: 1776213378200
+          modified: 1776213378200
+          isPrivate: false
+          sortKey: -1776213376200
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "warehouse_id": "Demo warehouse_id",
+              "warehouse_code": "DMO001",
+              "warehouse_name": "Demo Name",
+              "warehouse_type": "Demo warehouse_type",
+              "address": "Jl. Demo Street No. 123",
+              "city": "Jakarta",
+              "capacity": 100000,
+              "is_active": "Demo is_active"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/warehouse/update
+        name: warehouse/update
+        meta:
+          id: req_pzb3i7h90hc4szzi59jcb8
+          created: 1776213378200
+          modified: 1776213378200
+          isPrivate: false
+          sortKey: -1776213375200
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "warehouse_id": "Demo warehouse_id",
+              "warehouse_code": "DMO001",
+              "warehouse_name": "Updated Demo Name",
+              "warehouse_type": "Demo warehouse_type",
+              "address": "Jl. Demo Street No. 123",
+              "city": "Jakarta",
+              "capacity": 100000,
+              "is_active": "Demo is_active"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/warehouse/first
+        name: warehouse/first
+        meta:
+          id: req_7q9b8ipaufdyo3nuxki5x
+          created: 1776213378200
+          modified: 1776213378200
+          isPrivate: false
+          sortKey: -1776213374200
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": {
+                "key": "warehouse_id",
+                "value": "Demo warehouse_id"
+              },
+              "select": [
+                "warehouse_id",
+                "warehouse_code",
+                "warehouse_name",
+                "warehouse_type",
+                "address",
+                "city",
+                "capacity",
+                "is_active"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/warehouse/delete
+        name: warehouse/delete
+        meta:
+          id: req_8r9zpav4k48wlfrtbsfrxc
+          created: 1776213378200
+          modified: 1776213378200
+          isPrivate: false
+          sortKey: -1776213373200
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": [
+                {
+                  "key": "warehouse_id",
+                  "value": "Demo warehouse_id"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/warehouse/read
+        name: warehouse/read
+        meta:
+          id: req_wohbpdd5ecsxjg2zlh0fmp
+          created: 1776213378200
+          modified: 1776213378200
+          isPrivate: false
+          sortKey: -1776213372200
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "page": 1,
+              "per_page": 10,
+              "search_value": "",
+              "search_by": "warehouse_code"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/health
+        name: health
+        meta:
+          id: req_4uc8rpiwbh424rvmhinsln
+          created: 1776213378200
+          modified: 1776213378200
+          isPrivate: false
+          sortKey: -1776213371200
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_7ad6tnifvzb5l7uz1etyvm
+    created: 1776213378200
+    modified: 1776213378200
+environments:
+  name: Base Environment
+  meta:
+    id: env_kk3qia91ny96a8x9jdu3fm
+    created: 1776213378200
+    modified: 1776213378200
+    isPrivate: false

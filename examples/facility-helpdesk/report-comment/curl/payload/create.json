@@ -1,0 +1,8 @@
+{
+  "comment_id": "Demo comment_id",
+  "report_id": "Demo report_id",
+  "author_id": "Demo author_id",
+  "comment_text": "Demo comment_text",
+  "is_internal": "Demo is_internal",
+  "created_at": "Demo created_at"
+}

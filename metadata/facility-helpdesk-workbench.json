@@ -1,0 +1,1059 @@
+{
+  "projectName": "facility-helpdesk",
+  "databaseType": "postgres",
+  "endpoints": {
+    "app-user": {
+      "tableName": "app_user",
+      "displayName": "App-User",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "user_id",
+      "fieldName": [
+        "user_id",
+        "employee_code",
+        "full_name",
+        "email",
+        "phone",
+        "password_hash",
+        "role",
+        "department",
+        "job_title",
+        "is_active",
+        "last_login_at",
+        "created_at",
+        "updated_at"
+      ],
+      "fieldValidation": [
+        {
+          "name": "user_id",
+          "type": "string",
+          "constraints": {
+            "primaryKey": true,
+            "autoGenerate": true,
+            "required": true
+          }
+        },
+        {
+          "name": "employee_code",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "unique": true,
+            "uppercase": true,
+            "trim": true,
+            "maxLength": 30
+          }
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "unique": true,
+            "trim": true,
+            "lowercase": true
+          }
+        },
+        {
+          "name": "role",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "enum": [
+              "USER",
+              "ADMIN",
+              "TEKNISI"
+            ]
+          }
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "constraints": {
+            "default": true
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "user_id": "Demo user_id",
+          "employee_code": "DMO001",
+          "full_name": "Demo Name",
+          "email": "demo@example.com",
+          "phone": "+62812345678",
+          "password_hash": "Demo password_hash",
+          "role": "USER",
+          "department": "Demo department",
+          "job_title": "Demo job_title",
+          "is_active": true,
+          "last_login_at": "Demo last_login_at",
+          "created_at": "Demo created_at",
+          "updated_at": "2026-04-15"
+        },
+        "update": {
+          "user_id": "Demo user_id",
+          "employee_code": "DMO001",
+          "full_name": "Updated Demo Name",
+          "email": "updated@example.com",
+          "phone": "+62812345678",
+          "password_hash": "Demo password_hash",
+          "role": "USER",
+          "department": "Demo department",
+          "job_title": "Demo job_title",
+          "is_active": true,
+          "last_login_at": "Demo last_login_at",
+          "created_at": "Demo created_at",
+          "updated_at": "2026-04-15"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "user_id",
+              "value": "Demo user_id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "user_id",
+              "value": "Demo user_id"
+            }
+          ],
+          "select": [
+            "user_id",
+            "employee_code",
+            "full_name",
+            "email",
+            "phone",
+            "password_hash",
+            "role",
+            "department",
+            "job_title",
+            "is_active",
+            "last_login_at",
+            "created_at",
+            "updated_at"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "employee_code"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "user_id",
+            "employee_code"
+          ]
+        }
+      }
+    },
+    "issue-category": {
+      "tableName": "issue_category",
+      "displayName": "Issue-Category",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "category_id",
+      "fieldName": [
+        "category_id",
+        "category_code",
+        "category_name",
+        "description",
+        "is_active",
+        "sort_order",
+        "created_at",
+        "updated_at"
+      ],
+      "fieldValidation": [
+        {
+          "name": "category_id",
+          "type": "string",
+          "constraints": {
+            "primaryKey": true,
+            "autoGenerate": true,
+            "required": true
+          }
+        },
+        {
+          "name": "category_code",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "unique": true,
+            "uppercase": true,
+            "trim": true,
+            "maxLength": 30
+          }
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "constraints": {
+            "default": true
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "category_id": "General",
+          "category_code": "DMO001",
+          "category_name": "Demo Name",
+          "description": "Demo description text",
+          "is_active": true,
+          "sort_order": "Demo sort_order",
+          "created_at": "Demo created_at",
+          "updated_at": "2026-04-15"
+        },
+        "update": {
+          "category_id": "General",
+          "category_code": "DMO001",
+          "category_name": "Updated Demo Name",
+          "description": "Demo description text",
+          "is_active": true,
+          "sort_order": "Demo sort_order",
+          "created_at": "Demo created_at",
+          "updated_at": "2026-04-15"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "category_id",
+              "value": "General"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "category_id",
+              "value": "General"
+            }
+          ],
+          "select": [
+            "category_id",
+            "category_code",
+            "category_name",
+            "description",
+            "is_active",
+            "sort_order",
+            "created_at",
+            "updated_at"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "category_code"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "category_id",
+            "category_code"
+          ]
+        }
+      }
+    },
+    "facility-asset": {
+      "tableName": "facility_asset",
+      "displayName": "Facility-Asset",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "facility_id",
+      "fieldName": [
+        "facility_id",
+        "facility_code",
+        "facility_name",
+        "facility_type",
+        "floor_level",
+        "room_name",
+        "location_detail",
+        "brand",
+        "model",
+        "serial_number",
+        "condition_status",
+        "is_active",
+        "notes",
+        "created_at",
+        "updated_at"
+      ],
+      "fieldValidation": [
+        {
+          "name": "facility_id",
+          "type": "string",
+          "constraints": {
+            "primaryKey": true,
+            "autoGenerate": true,
+            "required": true
+          }
+        },
+        {
+          "name": "facility_code",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "unique": true,
+            "uppercase": true,
+            "trim": true,
+            "maxLength": 30
+          }
+        },
+        {
+          "name": "condition_status",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "enum": [
+              "good",
+              "need_repair",
+              "broken",
+              "maintenance"
+            ]
+          }
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "constraints": {
+            "default": true
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "facility_id": "Demo facility_id",
+          "facility_code": "DMO001",
+          "facility_name": "Demo Name",
+          "facility_type": "Demo facility_type",
+          "floor_level": "Demo floor_level",
+          "room_name": "Demo Name",
+          "location_detail": "Demo location_detail",
+          "brand": "Demo brand",
+          "model": "Demo model",
+          "serial_number": "Demo serial_number",
+          "condition_status": "good",
+          "is_active": true,
+          "notes": "Demo notes",
+          "created_at": "Demo created_at",
+          "updated_at": "2026-04-15"
+        },
+        "update": {
+          "facility_id": "Demo facility_id",
+          "facility_code": "DMO001",
+          "facility_name": "Updated Demo Name",
+          "facility_type": "Demo facility_type",
+          "floor_level": "Demo floor_level",
+          "room_name": "Updated Demo Name",
+          "location_detail": "Demo location_detail",
+          "brand": "Demo brand",
+          "model": "Demo model",
+          "serial_number": "Demo serial_number",
+          "condition_status": "good",
+          "is_active": true,
+          "notes": "Demo notes",
+          "created_at": "Demo created_at",
+          "updated_at": "2026-04-15"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "facility_id",
+              "value": "Demo facility_id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "facility_id",
+              "value": "Demo facility_id"
+            }
+          ],
+          "select": [
+            "facility_id",
+            "facility_code",
+            "facility_name",
+            "facility_type",
+            "floor_level",
+            "room_name",
+            "location_detail",
+            "brand",
+            "model",
+            "serial_number",
+            "condition_status",
+            "is_active",
+            "notes",
+            "created_at",
+            "updated_at"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "facility_code"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "facility_id",
+            "facility_code"
+          ]
+        }
+      }
+    },
+    "maintenance-report": {
+      "tableName": "maintenance_report",
+      "displayName": "Maintenance-Report",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "report_id",
+      "fieldName": [
+        "report_id",
+        "report_number",
+        "reporter_id",
+        "category_id",
+        "facility_id",
+        "title",
+        "location_floor",
+        "location_room",
+        "location_detail",
+        "description",
+        "urgency",
+        "status",
+        "assigned_to_id",
+        "admin_note",
+        "technician_note",
+        "resolution_note",
+        "photo_before_url",
+        "photo_after_url",
+        "reported_at",
+        "assigned_at",
+        "started_at",
+        "solved_at",
+        "closed_at",
+        "created_at",
+        "updated_at"
+      ],
+      "fieldValidation": [
+        {
+          "name": "report_id",
+          "type": "string",
+          "constraints": {
+            "primaryKey": true,
+            "autoGenerate": true,
+            "required": true
+          }
+        },
+        {
+          "name": "report_number",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "unique": true,
+            "trim": true,
+            "maxLength": 30
+          }
+        },
+        {
+          "name": "urgency",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          }
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "enum": [
+              "pending",
+              "assigned",
+              "on_progress",
+              "solved",
+              "closed",
+              "cancelled"
+            ]
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "report_id": "Demo report_id",
+          "report_number": "Demo report_number",
+          "reporter_id": "Demo reporter_id",
+          "category_id": "General",
+          "facility_id": "Demo facility_id",
+          "title": "Demo title",
+          "location_floor": "Demo location_floor",
+          "location_room": "Demo location_room",
+          "location_detail": "Demo location_detail",
+          "description": "Demo description text",
+          "urgency": "low",
+          "status": "pending",
+          "assigned_to_id": "Demo assigned_to_id",
+          "admin_note": "Demo admin_note",
+          "technician_note": "Demo technician_note",
+          "resolution_note": "Demo resolution_note",
+          "photo_before_url": "https://example.com",
+          "photo_after_url": "https://example.com",
+          "reported_at": "Demo reported_at",
+          "assigned_at": "Demo assigned_at",
+          "started_at": "Demo started_at",
+          "solved_at": "Demo solved_at",
+          "closed_at": "Demo closed_at",
+          "created_at": "Demo created_at",
+          "updated_at": "2026-04-15"
+        },
+        "update": {
+          "report_id": "Demo report_id",
+          "report_number": "Demo report_number",
+          "reporter_id": "Demo reporter_id",
+          "category_id": "General",
+          "facility_id": "Demo facility_id",
+          "title": "Demo title",
+          "location_floor": "Demo location_floor",
+          "location_room": "Demo location_room",
+          "location_detail": "Demo location_detail",
+          "description": "Demo description text",
+          "urgency": "low",
+          "status": "pending",
+          "assigned_to_id": "Demo assigned_to_id",
+          "admin_note": "Demo admin_note",
+          "technician_note": "Demo technician_note",
+          "resolution_note": "Demo resolution_note",
+          "photo_before_url": "https://example.com",
+          "photo_after_url": "https://example.com",
+          "reported_at": "Demo reported_at",
+          "assigned_at": "Demo assigned_at",
+          "started_at": "Demo started_at",
+          "solved_at": "Demo solved_at",
+          "closed_at": "Demo closed_at",
+          "created_at": "Demo created_at",
+          "updated_at": "2026-04-15"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "report_id",
+              "value": "Demo report_id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "report_id",
+              "value": "Demo report_id"
+            }
+          ],
+          "select": [
+            "report_id",
+            "report_number",
+            "reporter_id",
+            "category_id",
+            "facility_id",
+            "title",
+            "location_floor",
+            "location_room",
+            "location_detail",
+            "description",
+            "urgency",
+            "status",
+            "assigned_to_id",
+            "admin_note",
+            "technician_note",
+            "resolution_note",
+            "photo_before_url",
+            "photo_after_url",
+            "reported_at",
+            "assigned_at",
+            "started_at",
+            "solved_at",
+            "closed_at",
+            "created_at",
+            "updated_at"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "report_number"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "report_id",
+            "report_number"
+          ]
+        }
+      }
+    },
+    "report-attachment": {
+      "tableName": "report_attachment",
+      "displayName": "Report-Attachment",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "attachment_id",
+      "fieldName": [
+        "attachment_id",
+        "report_id",
+        "attachment_type",
+        "file_name",
+        "file_url",
+        "mime_type",
+        "file_size_bytes",
+        "uploaded_by",
+        "created_at"
+      ],
+      "fieldValidation": [
+        {
+          "name": "attachment_id",
+          "type": "string",
+          "constraints": {
+            "primaryKey": true,
+            "autoGenerate": true,
+            "required": true
+          }
+        },
+        {
+          "name": "attachment_type",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "enum": [
+              "before",
+              "after",
+              "supporting"
+            ]
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "attachment_id": "Demo attachment_id",
+          "report_id": "Demo report_id",
+          "attachment_type": "before",
+          "file_name": "Demo Name",
+          "file_url": "https://example.com",
+          "mime_type": "Demo mime_type",
+          "file_size_bytes": "Demo file_size_bytes",
+          "uploaded_by": "Demo uploaded_by",
+          "created_at": "Demo created_at"
+        },
+        "update": {
+          "attachment_id": "Demo attachment_id",
+          "report_id": "Demo report_id",
+          "attachment_type": "before",
+          "file_name": "Updated Demo Name",
+          "file_url": "https://example.com",
+          "mime_type": "Demo mime_type",
+          "file_size_bytes": "Demo file_size_bytes",
+          "uploaded_by": "Demo uploaded_by",
+          "created_at": "Demo created_at"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "attachment_id",
+              "value": "Demo attachment_id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "attachment_id",
+              "value": "Demo attachment_id"
+            }
+          ],
+          "select": [
+            "attachment_id",
+            "report_id",
+            "attachment_type",
+            "file_name",
+            "file_url",
+            "mime_type",
+            "file_size_bytes",
+            "uploaded_by",
+            "created_at"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "file_name"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "attachment_id",
+            "report_id"
+          ]
+        }
+      }
+    },
+    "report-comment": {
+      "tableName": "report_comment",
+      "displayName": "Report-Comment",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "comment_id",
+      "fieldName": [
+        "comment_id",
+        "report_id",
+        "author_id",
+        "comment_text",
+        "is_internal",
+        "created_at"
+      ],
+      "fieldValidation": [
+        {
+          "name": "comment_id",
+          "type": "string",
+          "constraints": {
+            "primaryKey": true,
+            "autoGenerate": true,
+            "required": true
+          }
+        },
+        {
+          "name": "comment_text",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "trim": true
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "comment_id": "Demo comment_id",
+          "report_id": "Demo report_id",
+          "author_id": "Demo author_id",
+          "comment_text": "Demo comment_text",
+          "is_internal": "Demo is_internal",
+          "created_at": "Demo created_at"
+        },
+        "update": {
+          "comment_id": "Demo comment_id",
+          "report_id": "Demo report_id",
+          "author_id": "Demo author_id",
+          "comment_text": "Demo comment_text",
+          "is_internal": "Demo is_internal",
+          "created_at": "Demo created_at"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "comment_id",
+              "value": "Demo comment_id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "comment_id",
+              "value": "Demo comment_id"
+            }
+          ],
+          "select": [
+            "comment_id",
+            "report_id",
+            "author_id",
+            "comment_text",
+            "is_internal",
+            "created_at"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "comment_text"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "comment_id",
+            "report_id"
+          ]
+        }
+      }
+    },
+    "report-activity": {
+      "tableName": "report_activity",
+      "displayName": "Report-Activity",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "activity_id",
+      "fieldName": [
+        "activity_id",
+        "report_id",
+        "actor_id",
+        "activity_type",
+        "status_from",
+        "status_to",
+        "activity_note",
+        "activity_at"
+      ],
+      "fieldValidation": [
+        {
+          "name": "activity_id",
+          "type": "string",
+          "constraints": {
+            "primaryKey": true,
+            "autoGenerate": true,
+            "required": true
+          }
+        },
+        {
+          "name": "activity_type",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "enum": [
+              "created",
+              "assigned",
+              "started",
+              "progress",
+              "comment",
+              "attachment",
+              "solved",
+              "closed"
+            ]
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "activity_id": "Demo activity_id",
+          "report_id": "Demo report_id",
+          "actor_id": "Demo actor_id",
+          "activity_type": "created",
+          "status_from": "active",
+          "status_to": "active",
+          "activity_note": "Demo activity_note",
+          "activity_at": "Demo activity_at"
+        },
+        "update": {
+          "activity_id": "Demo activity_id",
+          "report_id": "Demo report_id",
+          "actor_id": "Demo actor_id",
+          "activity_type": "created",
+          "status_from": "active",
+          "status_to": "active",
+          "activity_note": "Demo activity_note",
+          "activity_at": "Demo activity_at"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "activity_id",
+              "value": "Demo activity_id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "activity_id",
+              "value": "Demo activity_id"
+            }
+          ],
+          "select": [
+            "activity_id",
+            "report_id",
+            "actor_id",
+            "activity_type",
+            "status_from",
+            "status_to",
+            "activity_note",
+            "activity_at"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "activity_type"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "activity_id",
+            "report_id"
+          ]
+        }
+      }
+    }
+  },
+  "processors": {}
+}

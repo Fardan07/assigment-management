@@ -1,0 +1,10 @@
+{
+  "activity_id": "Demo activity_id",
+  "report_id": "Demo report_id",
+  "actor_id": "Demo actor_id",
+  "activity_type": "created",
+  "status_from": "active",
+  "status_to": "active",
+  "activity_note": "Demo activity_note",
+  "activity_at": "Demo activity_at"
+}

@@ -1,0 +1,21 @@
+{
+  "where": {
+    "key": "user_id",
+    "value": "Demo user_id"
+  },
+  "select": [
+    "user_id",
+    "employee_code",
+    "full_name",
+    "email",
+    "phone",
+    "password_hash",
+    "role",
+    "department",
+    "job_title",
+    "is_active",
+    "last_login_at",
+    "created_at",
+    "updated_at"
+  ]
+}

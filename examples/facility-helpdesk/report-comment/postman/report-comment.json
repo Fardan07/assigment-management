@@ -1,0 +1,301 @@
+{
+  "info": {
+    "_postman_id": "1507z1a132zwop45ifrh7a",
+    "name": "Facility-helpdesk - Report-comment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "restforge-generator"
+  },
+  "item": [
+    {
+      "name": "report-comment/datatables",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"draw\": 1,\n  \"start\": 0,\n  \"length\": 10,\n  \"search\": {\n    \"value\": \"\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/report-comment/datatables",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "report-comment",
+            "datatables"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "report-comment/lookup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-request-mode",
+            "value": "static",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"select\": [\n    \"comment_id\",\n    \"report_id\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/report-comment/lookup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "report-comment",
+            "lookup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "report-comment/create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comment_id\": \"Demo comment_id\",\n  \"report_id\": \"Demo report_id\",\n  \"author_id\": \"Demo author_id\",\n  \"comment_text\": \"Demo comment_text\",\n  \"is_internal\": \"Demo is_internal\",\n  \"created_at\": \"Demo created_at\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/report-comment/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "report-comment",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "report-comment/update",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"comment_id\": \"Demo comment_id\",\n  \"report_id\": \"Demo report_id\",\n  \"author_id\": \"Demo author_id\",\n  \"comment_text\": \"Demo comment_text\",\n  \"is_internal\": \"Demo is_internal\",\n  \"created_at\": \"Demo created_at\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/report-comment/update",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "report-comment",
+            "update"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "report-comment/first",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": {\n    \"key\": \"comment_id\",\n    \"value\": \"Demo comment_id\"\n  },\n  \"select\": [\n    \"comment_id\",\n    \"report_id\",\n    \"author_id\",\n    \"comment_text\",\n    \"is_internal\",\n    \"created_at\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/report-comment/first",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "report-comment",
+            "first"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "report-comment/delete",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": [\n    {\n      \"key\": \"comment_id\",\n      \"value\": \"Demo comment_id\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/report-comment/delete",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "report-comment",
+            "delete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "report-comment/read",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"page\": 1,\n  \"per_page\": 10,\n  \"search_value\": \"\",\n  \"search_by\": \"comment_text\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/report-comment/read",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "report-comment",
+            "read"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "health",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

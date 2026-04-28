@@ -1,0 +1,276 @@
+type: collection.insomnia.rest/5.0
+name: Facility-helpdesk
+meta:
+  id: wrk_i1sxsv6fzjmk4cns5zwoi
+  created: 1776217416748
+  modified: 1776217416748
+collection:
+  - name: issue-category
+    meta:
+      id: fld_ou9opmdkp1sqnb9jjg3lto
+      created: 1776217416748
+      modified: 1776217416748
+      sortKey: -1776217416748
+    children:
+      - url: http://localhost:3000/api/facility-helpdesk/issue-category/datatables
+        name: issue-category/datatables
+        meta:
+          id: req_v5xq6qb9ygbohj1bnc31rm
+          created: 1776217416748
+          modified: 1776217416748
+          isPrivate: false
+          sortKey: -1776217416748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "draw": 1,
+              "start": 0,
+              "length": 10,
+              "search": {
+                "value": ""
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/issue-category/lookup
+        name: issue-category/lookup
+        meta:
+          id: req_z3wsjdalqs4wa2ug9ff2g
+          created: 1776217416748
+          modified: 1776217416748
+          isPrivate: false
+          sortKey: -1776217415748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "select": [
+                "category_id",
+                "category_code"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: x-request-mode
+            value: static
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/issue-category/create
+        name: issue-category/create
+        meta:
+          id: req_y477xwtrasyfeojjs4cc
+          created: 1776217416748
+          modified: 1776217416748
+          isPrivate: false
+          sortKey: -1776217414748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "category_id": "General",
+              "category_code": "DMO001",
+              "category_name": "Demo Name",
+              "description": "Demo description text",
+              "is_active": true,
+              "sort_order": "Demo sort_order",
+              "created_at": "Demo created_at",
+              "updated_at": "2026-04-15"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/issue-category/update
+        name: issue-category/update
+        meta:
+          id: req_qz6fp1lq0ucz0999bexwf
+          created: 1776217416748
+          modified: 1776217416748
+          isPrivate: false
+          sortKey: -1776217413748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "category_id": "General",
+              "category_code": "DMO001",
+              "category_name": "Updated Demo Name",
+              "description": "Demo description text",
+              "is_active": true,
+              "sort_order": "Demo sort_order",
+              "created_at": "Demo created_at",
+              "updated_at": "2026-04-15"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/issue-category/first
+        name: issue-category/first
+        meta:
+          id: req_sog4wx5svkgakbnravbrcr
+          created: 1776217416748
+          modified: 1776217416748
+          isPrivate: false
+          sortKey: -1776217412748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": {
+                "key": "category_id",
+                "value": "General"
+              },
+              "select": [
+                "category_id",
+                "category_code",
+                "category_name",
+                "description",
+                "is_active",
+                "sort_order",
+                "created_at",
+                "updated_at"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/issue-category/delete
+        name: issue-category/delete
+        meta:
+          id: req_7q1505fqoua3wzz93o9it
+          created: 1776217416748
+          modified: 1776217416748
+          isPrivate: false
+          sortKey: -1776217411748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": [
+                {
+                  "key": "category_id",
+                  "value": "General"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/issue-category/read
+        name: issue-category/read
+        meta:
+          id: req_0td3g2szcdikndy6nmz0uk
+          created: 1776217416748
+          modified: 1776217416748
+          isPrivate: false
+          sortKey: -1776217410748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "page": 1,
+              "per_page": 10,
+              "search_value": "",
+              "search_by": "category_code"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/health
+        name: health
+        meta:
+          id: req_99r9byy4u4gbunceck9xv
+          created: 1776217416748
+          modified: 1776217416748
+          isPrivate: false
+          sortKey: -1776217409748
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_frkzzgckmj7jrlemopo12
+    created: 1776217416748
+    modified: 1776217416748
+environments:
+  name: Base Environment
+  meta:
+    id: env_g1bqig7r6yvbcedzgvul1a
+    created: 1776217416748
+    modified: 1776217416748
+    isPrivate: false

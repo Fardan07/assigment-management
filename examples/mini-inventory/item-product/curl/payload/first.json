@@ -1,0 +1,26 @@
+{
+  "where": {
+    "key": "item_product_id",
+    "value": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  },
+  "select": [
+    "item_product_id",
+    "product_code",
+    "sku",
+    "product_name",
+    "category_id",
+    "category_name",
+    "brand",
+    "description",
+    "purchase_price",
+    "selling_price",
+    "stock",
+    "min_stock",
+    "uom",
+    "weight",
+    "is_active",
+    "show_in_store",
+    "barcode",
+    "shelf_location"
+  ]
+}

@@ -1,0 +1,301 @@
+{
+  "info": {
+    "_postman_id": "utpp7qcuya8k1fiowu2nos",
+    "name": "Mini-inventory - Stock-inbound",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "restforge-generator"
+  },
+  "item": [
+    {
+      "name": "stock-inbound/datatables",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"draw\": 1,\n  \"start\": 0,\n  \"length\": 10,\n  \"search\": {\n    \"value\": \"\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/stock-inbound/datatables",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "stock-inbound",
+            "datatables"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "stock-inbound/lookup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-request-mode",
+            "value": "static",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"select\": [\n    \"stock_inbound_id\",\n    \"inbound_number\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/stock-inbound/lookup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "stock-inbound",
+            "lookup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "stock-inbound/create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"stock_inbound_id\": \"Demo stock_inbound_id\",\n  \"inbound_number\": \"Demo inbound_number\",\n  \"inbound_date\": \"2026-04-15\",\n  \"warehouse_id\": \"Demo warehouse_id\",\n  \"supplier_id\": \"Demo supplier_id\",\n  \"reference_number\": \"Demo reference_number\",\n  \"notes\": \"Demo notes\",\n  \"total_items\": \"Demo total_items\",\n  \"total_qty\": \"Demo total_qty\",\n  \"total_amount\": 100000,\n  \"status\": \"active\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/stock-inbound/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "stock-inbound",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "stock-inbound/update",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"stock_inbound_id\": \"Demo stock_inbound_id\",\n  \"inbound_number\": \"Demo inbound_number\",\n  \"inbound_date\": \"2026-04-15\",\n  \"warehouse_id\": \"Demo warehouse_id\",\n  \"supplier_id\": \"Demo supplier_id\",\n  \"reference_number\": \"Demo reference_number\",\n  \"notes\": \"Demo notes\",\n  \"total_items\": \"Demo total_items\",\n  \"total_qty\": \"Demo total_qty\",\n  \"total_amount\": 100000,\n  \"status\": \"active\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/stock-inbound/update",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "stock-inbound",
+            "update"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "stock-inbound/first",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": {\n    \"key\": \"stock_inbound_id\",\n    \"value\": \"Demo stock_inbound_id\"\n  },\n  \"select\": [\n    \"stock_inbound_id\",\n    \"inbound_number\",\n    \"inbound_date\",\n    \"warehouse_id\",\n    \"supplier_id\",\n    \"reference_number\",\n    \"notes\",\n    \"total_items\",\n    \"total_qty\",\n    \"total_amount\",\n    \"status\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/stock-inbound/first",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "stock-inbound",
+            "first"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "stock-inbound/delete",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": [\n    {\n      \"key\": \"stock_inbound_id\",\n      \"value\": \"Demo stock_inbound_id\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/stock-inbound/delete",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "stock-inbound",
+            "delete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "stock-inbound/read",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"page\": 1,\n  \"per_page\": 10,\n  \"search_value\": \"\",\n  \"search_by\": \"inbound_number\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/stock-inbound/read",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "stock-inbound",
+            "read"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "health",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

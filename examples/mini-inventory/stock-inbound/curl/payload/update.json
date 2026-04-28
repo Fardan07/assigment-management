@@ -1,0 +1,13 @@
+{
+  "stock_inbound_id": "Demo stock_inbound_id",
+  "inbound_number": "Demo inbound_number",
+  "inbound_date": "2026-04-15",
+  "warehouse_id": "Demo warehouse_id",
+  "supplier_id": "Demo supplier_id",
+  "reference_number": "Demo reference_number",
+  "notes": "Demo notes",
+  "total_items": "Demo total_items",
+  "total_qty": "Demo total_qty",
+  "total_amount": 100000,
+  "status": "active"
+}

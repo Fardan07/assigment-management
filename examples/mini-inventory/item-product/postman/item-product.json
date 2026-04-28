@@ -1,0 +1,301 @@
+{
+  "info": {
+    "_postman_id": "vl3mj9chc7pxyhuj6fnqtd",
+    "name": "Mini-inventory - Item-product",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "restforge-generator"
+  },
+  "item": [
+    {
+      "name": "item-product/datatables",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"draw\": 1,\n  \"start\": 0,\n  \"length\": 10,\n  \"search\": {\n    \"value\": \"\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/item-product/datatables",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "item-product",
+            "datatables"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "item-product/lookup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-request-mode",
+            "value": "static",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"select\": [\n    \"item_product_id\",\n    \"product_code\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/item-product/lookup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "item-product",
+            "lookup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "item-product/create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"item_product_id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"product_code\": \"DMO001\",\n  \"sku\": \"Demo sku\",\n  \"product_name\": \"Demo Name\",\n  \"category_id\": \"General\",\n  \"category_name\": \"Demo Name\",\n  \"brand\": \"Demo brand\",\n  \"description\": \"Demo description text\",\n  \"purchase_price\": 100000,\n  \"selling_price\": 0,\n  \"stock\": 0,\n  \"min_stock\": 0,\n  \"uom\": \"pcs\",\n  \"weight\": 0,\n  \"is_active\": \"true\",\n  \"show_in_store\": \"true\",\n  \"barcode\": \"DMO001\",\n  \"shelf_location\": \"Demo shelf_location\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/item-product/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "item-product",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "item-product/update",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"item_product_id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"product_code\": \"DMO001\",\n  \"sku\": \"Demo sku\",\n  \"product_name\": \"Updated Demo Name\",\n  \"category_id\": \"General\",\n  \"category_name\": \"Updated Demo Name\",\n  \"brand\": \"Demo brand\",\n  \"description\": \"Demo description text\",\n  \"purchase_price\": 100000,\n  \"selling_price\": 0,\n  \"stock\": 0,\n  \"min_stock\": 0,\n  \"uom\": \"pcs\",\n  \"weight\": 0,\n  \"is_active\": \"true\",\n  \"show_in_store\": \"true\",\n  \"barcode\": \"DMO001\",\n  \"shelf_location\": \"Demo shelf_location\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/item-product/update",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "item-product",
+            "update"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "item-product/first",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": {\n    \"key\": \"item_product_id\",\n    \"value\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n  },\n  \"select\": [\n    \"item_product_id\",\n    \"product_code\",\n    \"sku\",\n    \"product_name\",\n    \"category_id\",\n    \"category_name\",\n    \"brand\",\n    \"description\",\n    \"purchase_price\",\n    \"selling_price\",\n    \"stock\",\n    \"min_stock\",\n    \"uom\",\n    \"weight\",\n    \"is_active\",\n    \"show_in_store\",\n    \"barcode\",\n    \"shelf_location\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/item-product/first",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "item-product",
+            "first"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "item-product/delete",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": [\n    {\n      \"key\": \"item_product_id\",\n      \"value\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/item-product/delete",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "item-product",
+            "delete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "item-product/read",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"page\": 1,\n  \"per_page\": 10,\n  \"search_value\": \"\",\n  \"search_by\": \"product_code\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/item-product/read",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "item-product",
+            "read"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "health",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/mini-inventory/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "mini-inventory",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

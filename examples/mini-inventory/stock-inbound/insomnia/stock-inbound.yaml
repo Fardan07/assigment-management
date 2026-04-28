@@ -1,0 +1,285 @@
+type: collection.insomnia.rest/5.0
+name: Mini-inventory
+meta:
+  id: wrk_1pcq7dnpbobdj8v5rrulno
+  created: 1776213418712
+  modified: 1776213418712
+collection:
+  - name: stock-inbound
+    meta:
+      id: fld_ogak6fn6tmfzetwz3xqz4
+      created: 1776213418712
+      modified: 1776213418712
+      sortKey: -1776213418712
+    children:
+      - url: http://localhost:3000/api/mini-inventory/stock-inbound/datatables
+        name: stock-inbound/datatables
+        meta:
+          id: req_xro9uay0gncx667iif339
+          created: 1776213418712
+          modified: 1776213418712
+          isPrivate: false
+          sortKey: -1776213418712
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "draw": 1,
+              "start": 0,
+              "length": 10,
+              "search": {
+                "value": ""
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/stock-inbound/lookup
+        name: stock-inbound/lookup
+        meta:
+          id: req_4wndir3phfoxpof1gps58
+          created: 1776213418712
+          modified: 1776213418712
+          isPrivate: false
+          sortKey: -1776213417712
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "select": [
+                "stock_inbound_id",
+                "inbound_number"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: x-request-mode
+            value: static
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/stock-inbound/create
+        name: stock-inbound/create
+        meta:
+          id: req_dtfhsxfojvbbzffgv2o6gb
+          created: 1776213418712
+          modified: 1776213418712
+          isPrivate: false
+          sortKey: -1776213416712
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "stock_inbound_id": "Demo stock_inbound_id",
+              "inbound_number": "Demo inbound_number",
+              "inbound_date": "2026-04-15",
+              "warehouse_id": "Demo warehouse_id",
+              "supplier_id": "Demo supplier_id",
+              "reference_number": "Demo reference_number",
+              "notes": "Demo notes",
+              "total_items": "Demo total_items",
+              "total_qty": "Demo total_qty",
+              "total_amount": 100000,
+              "status": "active"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/stock-inbound/update
+        name: stock-inbound/update
+        meta:
+          id: req_exx1mn5jdfa2qo3v9vtzc
+          created: 1776213418712
+          modified: 1776213418712
+          isPrivate: false
+          sortKey: -1776213415712
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "stock_inbound_id": "Demo stock_inbound_id",
+              "inbound_number": "Demo inbound_number",
+              "inbound_date": "2026-04-15",
+              "warehouse_id": "Demo warehouse_id",
+              "supplier_id": "Demo supplier_id",
+              "reference_number": "Demo reference_number",
+              "notes": "Demo notes",
+              "total_items": "Demo total_items",
+              "total_qty": "Demo total_qty",
+              "total_amount": 100000,
+              "status": "active"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/stock-inbound/first
+        name: stock-inbound/first
+        meta:
+          id: req_agf7chdyhig3y81v6uwf32
+          created: 1776213418712
+          modified: 1776213418712
+          isPrivate: false
+          sortKey: -1776213414712
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": {
+                "key": "stock_inbound_id",
+                "value": "Demo stock_inbound_id"
+              },
+              "select": [
+                "stock_inbound_id",
+                "inbound_number",
+                "inbound_date",
+                "warehouse_id",
+                "supplier_id",
+                "reference_number",
+                "notes",
+                "total_items",
+                "total_qty",
+                "total_amount",
+                "status"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/stock-inbound/delete
+        name: stock-inbound/delete
+        meta:
+          id: req_h6d4j060mtlhskd5mbq0d
+          created: 1776213418712
+          modified: 1776213418712
+          isPrivate: false
+          sortKey: -1776213413712
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": [
+                {
+                  "key": "stock_inbound_id",
+                  "value": "Demo stock_inbound_id"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/stock-inbound/read
+        name: stock-inbound/read
+        meta:
+          id: req_rygzuhd2v4flovc9ks02jr
+          created: 1776213418712
+          modified: 1776213418712
+          isPrivate: false
+          sortKey: -1776213412712
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "page": 1,
+              "per_page": 10,
+              "search_value": "",
+              "search_by": "inbound_number"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/health
+        name: health
+        meta:
+          id: req_jcpmw7d6daapjd1a6yrjh8
+          created: 1776213418712
+          modified: 1776213418712
+          isPrivate: false
+          sortKey: -1776213411712
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_l77abhpj5lizzn11ev0nie
+    created: 1776213418712
+    modified: 1776213418712
+environments:
+  name: Base Environment
+  meta:
+    id: env_snmiwbkzz3di0otecqaep
+    created: 1776213418712
+    modified: 1776213418712
+    isPrivate: false

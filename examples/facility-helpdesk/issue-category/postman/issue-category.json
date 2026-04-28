@@ -1,0 +1,301 @@
+{
+  "info": {
+    "_postman_id": "1504142pdgmkuzc5orzf6",
+    "name": "Facility-helpdesk - Issue-category",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "restforge-generator"
+  },
+  "item": [
+    {
+      "name": "issue-category/datatables",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"draw\": 1,\n  \"start\": 0,\n  \"length\": 10,\n  \"search\": {\n    \"value\": \"\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/issue-category/datatables",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "issue-category",
+            "datatables"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "issue-category/lookup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-request-mode",
+            "value": "static",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"select\": [\n    \"category_id\",\n    \"category_code\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/issue-category/lookup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "issue-category",
+            "lookup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "issue-category/create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"category_id\": \"General\",\n  \"category_code\": \"DMO001\",\n  \"category_name\": \"Demo Name\",\n  \"description\": \"Demo description text\",\n  \"is_active\": true,\n  \"sort_order\": \"Demo sort_order\",\n  \"created_at\": \"Demo created_at\",\n  \"updated_at\": \"2026-04-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/issue-category/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "issue-category",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "issue-category/update",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"category_id\": \"General\",\n  \"category_code\": \"DMO001\",\n  \"category_name\": \"Updated Demo Name\",\n  \"description\": \"Demo description text\",\n  \"is_active\": true,\n  \"sort_order\": \"Demo sort_order\",\n  \"created_at\": \"Demo created_at\",\n  \"updated_at\": \"2026-04-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/issue-category/update",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "issue-category",
+            "update"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "issue-category/first",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": {\n    \"key\": \"category_id\",\n    \"value\": \"General\"\n  },\n  \"select\": [\n    \"category_id\",\n    \"category_code\",\n    \"category_name\",\n    \"description\",\n    \"is_active\",\n    \"sort_order\",\n    \"created_at\",\n    \"updated_at\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/issue-category/first",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "issue-category",
+            "first"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "issue-category/delete",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": [\n    {\n      \"key\": \"category_id\",\n      \"value\": \"General\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/issue-category/delete",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "issue-category",
+            "delete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "issue-category/read",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"page\": 1,\n  \"per_page\": 10,\n  \"search_value\": \"\",\n  \"search_by\": \"category_code\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/issue-category/read",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "issue-category",
+            "read"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "health",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "facility_id": "Demo facility_id",
+  "facility_code": "DMO001",
+  "facility_name": "Updated Demo Name",
+  "facility_type": "Demo facility_type",
+  "floor_level": "Demo floor_level",
+  "room_name": "Updated Demo Name",
+  "location_detail": "Demo location_detail",
+  "brand": "Demo brand",
+  "model": "Demo model",
+  "serial_number": "Demo serial_number",
+  "condition_status": "good",
+  "is_active": true,
+  "notes": "Demo notes",
+  "created_at": "Demo created_at",
+  "updated_at": "2026-04-15"
+}

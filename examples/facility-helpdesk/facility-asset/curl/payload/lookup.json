@@ -1,0 +1,6 @@
+{
+  "select": [
+    "facility_id",
+    "facility_code"
+  ]
+}

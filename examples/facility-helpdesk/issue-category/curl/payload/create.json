@@ -1,0 +1,10 @@
+{
+  "category_id": "General",
+  "category_code": "DMO001",
+  "category_name": "Demo Name",
+  "description": "Demo description text",
+  "is_active": true,
+  "sort_order": "Demo sort_order",
+  "created_at": "Demo created_at",
+  "updated_at": "2026-04-15"
+}

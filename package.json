@@ -1,0 +1,17 @@
+{
+  "name": "mini-inventory-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:facility-helpdesk": "node start-facility-helpdesk.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "restforgejs": "^2.1.4"
+  }
+}

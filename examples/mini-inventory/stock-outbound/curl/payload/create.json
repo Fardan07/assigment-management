@@ -1,0 +1,13 @@
+{
+  "stock_outbound_id": "Demo stock_outbound_id",
+  "outbound_number": "Demo outbound_number",
+  "outbound_date": "2026-04-15",
+  "warehouse_id": "Demo warehouse_id",
+  "customer_id": "Demo customer_id",
+  "reference_number": "Demo reference_number",
+  "notes": "Demo notes",
+  "total_items": "Demo total_items",
+  "total_qty": "Demo total_qty",
+  "total_amount": 100000,
+  "status": "active"
+}

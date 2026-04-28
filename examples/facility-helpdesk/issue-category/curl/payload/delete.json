@@ -1,0 +1,8 @@
+{
+  "where": [
+    {
+      "key": "category_id",
+      "value": "General"
+    }
+  ]
+}

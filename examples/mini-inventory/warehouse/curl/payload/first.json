@@ -1,0 +1,16 @@
+{
+  "where": {
+    "key": "warehouse_id",
+    "value": "Demo warehouse_id"
+  },
+  "select": [
+    "warehouse_id",
+    "warehouse_code",
+    "warehouse_name",
+    "warehouse_type",
+    "address",
+    "city",
+    "capacity",
+    "is_active"
+  ]
+}

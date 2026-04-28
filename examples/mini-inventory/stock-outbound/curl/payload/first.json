@@ -1,0 +1,19 @@
+{
+  "where": {
+    "key": "stock_outbound_id",
+    "value": "Demo stock_outbound_id"
+  },
+  "select": [
+    "stock_outbound_id",
+    "outbound_number",
+    "outbound_date",
+    "warehouse_id",
+    "customer_id",
+    "reference_number",
+    "notes",
+    "total_items",
+    "total_qty",
+    "total_amount",
+    "status"
+  ]
+}

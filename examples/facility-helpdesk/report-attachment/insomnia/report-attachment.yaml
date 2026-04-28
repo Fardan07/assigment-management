@@ -1,0 +1,279 @@
+type: collection.insomnia.rest/5.0
+name: Facility-helpdesk
+meta:
+  id: wrk_28apr9eykh8p12q9g56fhc
+  created: 1776217421748
+  modified: 1776217421748
+collection:
+  - name: report-attachment
+    meta:
+      id: fld_bid1an7cw8my8h0oxtzwx
+      created: 1776217421748
+      modified: 1776217421748
+      sortKey: -1776217421748
+    children:
+      - url: http://localhost:3000/api/facility-helpdesk/report-attachment/datatables
+        name: report-attachment/datatables
+        meta:
+          id: req_ox8om93c7qlxeggwak2um
+          created: 1776217421748
+          modified: 1776217421748
+          isPrivate: false
+          sortKey: -1776217421748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "draw": 1,
+              "start": 0,
+              "length": 10,
+              "search": {
+                "value": ""
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-attachment/lookup
+        name: report-attachment/lookup
+        meta:
+          id: req_ea7g6m3feb9oex9rs0q5jp
+          created: 1776217421748
+          modified: 1776217421748
+          isPrivate: false
+          sortKey: -1776217420748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "select": [
+                "attachment_id",
+                "report_id"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: x-request-mode
+            value: static
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-attachment/create
+        name: report-attachment/create
+        meta:
+          id: req_1x26lortjtehtlxv69oxfm
+          created: 1776217421748
+          modified: 1776217421748
+          isPrivate: false
+          sortKey: -1776217419748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "attachment_id": "Demo attachment_id",
+              "report_id": "Demo report_id",
+              "attachment_type": "before",
+              "file_name": "Demo Name",
+              "file_url": "https://example.com",
+              "mime_type": "Demo mime_type",
+              "file_size_bytes": "Demo file_size_bytes",
+              "uploaded_by": "Demo uploaded_by",
+              "created_at": "Demo created_at"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-attachment/update
+        name: report-attachment/update
+        meta:
+          id: req_7nj57kam316p1hy6enfx1e
+          created: 1776217421748
+          modified: 1776217421748
+          isPrivate: false
+          sortKey: -1776217418748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "attachment_id": "Demo attachment_id",
+              "report_id": "Demo report_id",
+              "attachment_type": "before",
+              "file_name": "Updated Demo Name",
+              "file_url": "https://example.com",
+              "mime_type": "Demo mime_type",
+              "file_size_bytes": "Demo file_size_bytes",
+              "uploaded_by": "Demo uploaded_by",
+              "created_at": "Demo created_at"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-attachment/first
+        name: report-attachment/first
+        meta:
+          id: req_7j7n3cqnmbnx0k6sn7hxds
+          created: 1776217421748
+          modified: 1776217421748
+          isPrivate: false
+          sortKey: -1776217417748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": {
+                "key": "attachment_id",
+                "value": "Demo attachment_id"
+              },
+              "select": [
+                "attachment_id",
+                "report_id",
+                "attachment_type",
+                "file_name",
+                "file_url",
+                "mime_type",
+                "file_size_bytes",
+                "uploaded_by",
+                "created_at"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-attachment/delete
+        name: report-attachment/delete
+        meta:
+          id: req_er4f6exz7wp4pqgdeooybw
+          created: 1776217421748
+          modified: 1776217421748
+          isPrivate: false
+          sortKey: -1776217416748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": [
+                {
+                  "key": "attachment_id",
+                  "value": "Demo attachment_id"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-attachment/read
+        name: report-attachment/read
+        meta:
+          id: req_2c8dw61cud47yc0xfbklhl
+          created: 1776217421748
+          modified: 1776217421748
+          isPrivate: false
+          sortKey: -1776217415748
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "page": 1,
+              "per_page": 10,
+              "search_value": "",
+              "search_by": "file_name"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/health
+        name: health
+        meta:
+          id: req_8yi88s6cnfe3r36iqkx81t
+          created: 1776217421748
+          modified: 1776217421748
+          isPrivate: false
+          sortKey: -1776217414748
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_go4pxmruaca0m6x880r8rli
+    created: 1776217421748
+    modified: 1776217421748
+environments:
+  name: Base Environment
+  meta:
+    id: env_tvajw09wjnbvr6dkim9bdd
+    created: 1776217421748
+    modified: 1776217421748
+    isPrivate: false

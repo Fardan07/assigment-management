@@ -1,0 +1,12 @@
+{
+  "customer_id": "Demo customer_id",
+  "customer_code": "DMO001",
+  "customer_name": "Demo Name",
+  "contact_person": "Demo contact_person",
+  "phone": "+62812345678",
+  "email": "demo@example.com",
+  "address": "Jl. Demo Street No. 123",
+  "city": "Jakarta",
+  "country": "Indonesia",
+  "is_active": "Demo is_active"
+}

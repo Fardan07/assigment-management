@@ -1,0 +1,301 @@
+{
+  "info": {
+    "_postman_id": "v079zq916xqbqgep8ri8a",
+    "name": "Facility-helpdesk - App-user",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "restforge-generator"
+  },
+  "item": [
+    {
+      "name": "app-user/datatables",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"draw\": 1,\n  \"start\": 0,\n  \"length\": 10,\n  \"search\": {\n    \"value\": \"\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/app-user/datatables",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "app-user",
+            "datatables"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "app-user/lookup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-request-mode",
+            "value": "static",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"select\": [\n    \"user_id\",\n    \"employee_code\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/app-user/lookup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "app-user",
+            "lookup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "app-user/create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"Demo user_id\",\n  \"employee_code\": \"DMO001\",\n  \"full_name\": \"Demo Name\",\n  \"email\": \"demo@example.com\",\n  \"phone\": \"+62812345678\",\n  \"password_hash\": \"Demo password_hash\",\n  \"role\": \"USER\",\n  \"department\": \"Demo department\",\n  \"job_title\": \"Demo job_title\",\n  \"is_active\": true,\n  \"last_login_at\": \"Demo last_login_at\",\n  \"created_at\": \"Demo created_at\",\n  \"updated_at\": \"2026-04-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/app-user/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "app-user",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "app-user/update",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"Demo user_id\",\n  \"employee_code\": \"DMO001\",\n  \"full_name\": \"Updated Demo Name\",\n  \"email\": \"updated@example.com\",\n  \"phone\": \"+62812345678\",\n  \"password_hash\": \"Demo password_hash\",\n  \"role\": \"USER\",\n  \"department\": \"Demo department\",\n  \"job_title\": \"Demo job_title\",\n  \"is_active\": true,\n  \"last_login_at\": \"Demo last_login_at\",\n  \"created_at\": \"Demo created_at\",\n  \"updated_at\": \"2026-04-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/app-user/update",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "app-user",
+            "update"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "app-user/first",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": {\n    \"key\": \"user_id\",\n    \"value\": \"Demo user_id\"\n  },\n  \"select\": [\n    \"user_id\",\n    \"employee_code\",\n    \"full_name\",\n    \"email\",\n    \"phone\",\n    \"password_hash\",\n    \"role\",\n    \"department\",\n    \"job_title\",\n    \"is_active\",\n    \"last_login_at\",\n    \"created_at\",\n    \"updated_at\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/app-user/first",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "app-user",
+            "first"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "app-user/delete",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": [\n    {\n      \"key\": \"user_id\",\n      \"value\": \"Demo user_id\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/app-user/delete",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "app-user",
+            "delete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "app-user/read",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"page\": 1,\n  \"per_page\": 10,\n  \"search_value\": \"\",\n  \"search_by\": \"employee_code\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/app-user/read",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "app-user",
+            "read"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "health",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

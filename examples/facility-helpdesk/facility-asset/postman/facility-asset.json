@@ -1,0 +1,301 @@
+{
+  "info": {
+    "_postman_id": "mz7owjycjti6v46dmojwe",
+    "name": "Facility-helpdesk - Facility-asset",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "restforge-generator"
+  },
+  "item": [
+    {
+      "name": "facility-asset/datatables",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"draw\": 1,\n  \"start\": 0,\n  \"length\": 10,\n  \"search\": {\n    \"value\": \"\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/facility-asset/datatables",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "facility-asset",
+            "datatables"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "facility-asset/lookup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-request-mode",
+            "value": "static",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"select\": [\n    \"facility_id\",\n    \"facility_code\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/facility-asset/lookup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "facility-asset",
+            "lookup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "facility-asset/create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"facility_id\": \"Demo facility_id\",\n  \"facility_code\": \"DMO001\",\n  \"facility_name\": \"Demo Name\",\n  \"facility_type\": \"Demo facility_type\",\n  \"floor_level\": \"Demo floor_level\",\n  \"room_name\": \"Demo Name\",\n  \"location_detail\": \"Demo location_detail\",\n  \"brand\": \"Demo brand\",\n  \"model\": \"Demo model\",\n  \"serial_number\": \"Demo serial_number\",\n  \"condition_status\": \"good\",\n  \"is_active\": true,\n  \"notes\": \"Demo notes\",\n  \"created_at\": \"Demo created_at\",\n  \"updated_at\": \"2026-04-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/facility-asset/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "facility-asset",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "facility-asset/update",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"facility_id\": \"Demo facility_id\",\n  \"facility_code\": \"DMO001\",\n  \"facility_name\": \"Updated Demo Name\",\n  \"facility_type\": \"Demo facility_type\",\n  \"floor_level\": \"Demo floor_level\",\n  \"room_name\": \"Updated Demo Name\",\n  \"location_detail\": \"Demo location_detail\",\n  \"brand\": \"Demo brand\",\n  \"model\": \"Demo model\",\n  \"serial_number\": \"Demo serial_number\",\n  \"condition_status\": \"good\",\n  \"is_active\": true,\n  \"notes\": \"Demo notes\",\n  \"created_at\": \"Demo created_at\",\n  \"updated_at\": \"2026-04-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/facility-asset/update",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "facility-asset",
+            "update"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "facility-asset/first",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": {\n    \"key\": \"facility_id\",\n    \"value\": \"Demo facility_id\"\n  },\n  \"select\": [\n    \"facility_id\",\n    \"facility_code\",\n    \"facility_name\",\n    \"facility_type\",\n    \"floor_level\",\n    \"room_name\",\n    \"location_detail\",\n    \"brand\",\n    \"model\",\n    \"serial_number\",\n    \"condition_status\",\n    \"is_active\",\n    \"notes\",\n    \"created_at\",\n    \"updated_at\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/facility-asset/first",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "facility-asset",
+            "first"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "facility-asset/delete",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": [\n    {\n      \"key\": \"facility_id\",\n      \"value\": \"Demo facility_id\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/facility-asset/delete",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "facility-asset",
+            "delete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "facility-asset/read",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"page\": 1,\n  \"per_page\": 10,\n  \"search_value\": \"\",\n  \"search_by\": \"facility_code\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/facility-asset/read",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "facility-asset",
+            "read"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "health",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

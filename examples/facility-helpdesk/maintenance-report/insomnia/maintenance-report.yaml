@@ -1,0 +1,327 @@
+type: collection.insomnia.rest/5.0
+name: Facility-helpdesk
+meta:
+  id: wrk_w1h2wj3x5dnp0l3midivmc
+  created: 1776217420078
+  modified: 1776217420078
+collection:
+  - name: maintenance-report
+    meta:
+      id: fld_4iupet1nuyvcqhb1nypp8
+      created: 1776217420078
+      modified: 1776217420078
+      sortKey: -1776217420078
+    children:
+      - url: http://localhost:3000/api/facility-helpdesk/maintenance-report/datatables
+        name: maintenance-report/datatables
+        meta:
+          id: req_1qd59bno3s8l1bqk7kiwn
+          created: 1776217420078
+          modified: 1776217420078
+          isPrivate: false
+          sortKey: -1776217420078
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "draw": 1,
+              "start": 0,
+              "length": 10,
+              "search": {
+                "value": ""
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/maintenance-report/lookup
+        name: maintenance-report/lookup
+        meta:
+          id: req_1mcj1iagxqdh6p79tzl2y5
+          created: 1776217420078
+          modified: 1776217420078
+          isPrivate: false
+          sortKey: -1776217419078
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "select": [
+                "report_id",
+                "report_number"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: x-request-mode
+            value: static
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/maintenance-report/create
+        name: maintenance-report/create
+        meta:
+          id: req_osrsun9pctepf2tpp1yzd
+          created: 1776217420078
+          modified: 1776217420078
+          isPrivate: false
+          sortKey: -1776217418078
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "report_id": "Demo report_id",
+              "report_number": "Demo report_number",
+              "reporter_id": "Demo reporter_id",
+              "category_id": "General",
+              "facility_id": "Demo facility_id",
+              "title": "Demo title",
+              "location_floor": "Demo location_floor",
+              "location_room": "Demo location_room",
+              "location_detail": "Demo location_detail",
+              "description": "Demo description text",
+              "urgency": "low",
+              "status": "pending",
+              "assigned_to_id": "Demo assigned_to_id",
+              "admin_note": "Demo admin_note",
+              "technician_note": "Demo technician_note",
+              "resolution_note": "Demo resolution_note",
+              "photo_before_url": "https://example.com",
+              "photo_after_url": "https://example.com",
+              "reported_at": "Demo reported_at",
+              "assigned_at": "Demo assigned_at",
+              "started_at": "Demo started_at",
+              "solved_at": "Demo solved_at",
+              "closed_at": "Demo closed_at",
+              "created_at": "Demo created_at",
+              "updated_at": "2026-04-15"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/maintenance-report/update
+        name: maintenance-report/update
+        meta:
+          id: req_kzxwmo52pgylkpeznyxvd
+          created: 1776217420078
+          modified: 1776217420078
+          isPrivate: false
+          sortKey: -1776217417078
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "report_id": "Demo report_id",
+              "report_number": "Demo report_number",
+              "reporter_id": "Demo reporter_id",
+              "category_id": "General",
+              "facility_id": "Demo facility_id",
+              "title": "Demo title",
+              "location_floor": "Demo location_floor",
+              "location_room": "Demo location_room",
+              "location_detail": "Demo location_detail",
+              "description": "Demo description text",
+              "urgency": "low",
+              "status": "pending",
+              "assigned_to_id": "Demo assigned_to_id",
+              "admin_note": "Demo admin_note",
+              "technician_note": "Demo technician_note",
+              "resolution_note": "Demo resolution_note",
+              "photo_before_url": "https://example.com",
+              "photo_after_url": "https://example.com",
+              "reported_at": "Demo reported_at",
+              "assigned_at": "Demo assigned_at",
+              "started_at": "Demo started_at",
+              "solved_at": "Demo solved_at",
+              "closed_at": "Demo closed_at",
+              "created_at": "Demo created_at",
+              "updated_at": "2026-04-15"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/maintenance-report/first
+        name: maintenance-report/first
+        meta:
+          id: req_4ncwlguq7ioskpgwergls
+          created: 1776217420078
+          modified: 1776217420078
+          isPrivate: false
+          sortKey: -1776217416078
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": {
+                "key": "report_id",
+                "value": "Demo report_id"
+              },
+              "select": [
+                "report_id",
+                "report_number",
+                "reporter_id",
+                "category_id",
+                "facility_id",
+                "title",
+                "location_floor",
+                "location_room",
+                "location_detail",
+                "description",
+                "urgency",
+                "status",
+                "assigned_to_id",
+                "admin_note",
+                "technician_note",
+                "resolution_note",
+                "photo_before_url",
+                "photo_after_url",
+                "reported_at",
+                "assigned_at",
+                "started_at",
+                "solved_at",
+                "closed_at",
+                "created_at",
+                "updated_at"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/maintenance-report/delete
+        name: maintenance-report/delete
+        meta:
+          id: req_7drt1557qmcc1thnd7ldt
+          created: 1776217420078
+          modified: 1776217420078
+          isPrivate: false
+          sortKey: -1776217415078
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": [
+                {
+                  "key": "report_id",
+                  "value": "Demo report_id"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/maintenance-report/read
+        name: maintenance-report/read
+        meta:
+          id: req_d2m7p70zg6axjsn8zsgtqq
+          created: 1776217420078
+          modified: 1776217420078
+          isPrivate: false
+          sortKey: -1776217414078
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "page": 1,
+              "per_page": 10,
+              "search_value": "",
+              "search_by": "report_number"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/health
+        name: health
+        meta:
+          id: req_s2mn2ysh258e35l5lsizfq
+          created: 1776217420078
+          modified: 1776217420078
+          isPrivate: false
+          sortKey: -1776217413078
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_qni0ef6g8epe8b1n7d80i
+    created: 1776217420078
+    modified: 1776217420078
+environments:
+  name: Base Environment
+  meta:
+    id: env_bkoon55uh4aa0kozh9q5xv
+    created: 1776217420078
+    modified: 1776217420078
+    isPrivate: false

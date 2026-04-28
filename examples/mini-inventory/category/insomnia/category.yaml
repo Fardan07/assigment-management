@@ -1,0 +1,267 @@
+type: collection.insomnia.rest/5.0
+name: Mini-inventory
+meta:
+  id: wrk_xgcc68bl7hpzogq7zd9x6
+  created: 1776213366178
+  modified: 1776213366178
+collection:
+  - name: category
+    meta:
+      id: fld_amqjw96og6ec7vmb00fsl
+      created: 1776213366178
+      modified: 1776213366178
+      sortKey: -1776213366178
+    children:
+      - url: http://localhost:3000/api/mini-inventory/category/datatables
+        name: category/datatables
+        meta:
+          id: req_81f40glj7mau4rs3oowdh
+          created: 1776213366178
+          modified: 1776213366178
+          isPrivate: false
+          sortKey: -1776213366178
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "draw": 1,
+              "start": 0,
+              "length": 10,
+              "search": {
+                "value": ""
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/category/lookup
+        name: category/lookup
+        meta:
+          id: req_n9k7ysa24tm12wfl7v6idnj
+          created: 1776213366178
+          modified: 1776213366178
+          isPrivate: false
+          sortKey: -1776213365178
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "select": [
+                "category_id",
+                "category_code"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: x-request-mode
+            value: static
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/category/create
+        name: category/create
+        meta:
+          id: req_1oorayyd8czhemp79pqrucu
+          created: 1776213366178
+          modified: 1776213366178
+          isPrivate: false
+          sortKey: -1776213364178
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "category_id": "General",
+              "category_code": "DMO001",
+              "category_name": "Demo Name",
+              "description": "Demo description text",
+              "is_active": "Demo is_active"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/category/update
+        name: category/update
+        meta:
+          id: req_dp598mpo58lu2aucx3t62
+          created: 1776213366178
+          modified: 1776213366178
+          isPrivate: false
+          sortKey: -1776213363178
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "category_id": "General",
+              "category_code": "DMO001",
+              "category_name": "Updated Demo Name",
+              "description": "Demo description text",
+              "is_active": "Demo is_active"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/category/first
+        name: category/first
+        meta:
+          id: req_hkqv2ir6vr81uo11g6y0iwj
+          created: 1776213366178
+          modified: 1776213366178
+          isPrivate: false
+          sortKey: -1776213362178
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": {
+                "key": "category_id",
+                "value": "General"
+              },
+              "select": [
+                "category_id",
+                "category_code",
+                "category_name",
+                "description",
+                "is_active"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/category/delete
+        name: category/delete
+        meta:
+          id: req_sho5rdd1yziuaqyl4z10nk
+          created: 1776213366178
+          modified: 1776213366178
+          isPrivate: false
+          sortKey: -1776213361178
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": [
+                {
+                  "key": "category_id",
+                  "value": "General"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/category/read
+        name: category/read
+        meta:
+          id: req_kwc4uxv20krdyu2118bmi
+          created: 1776213366178
+          modified: 1776213366178
+          isPrivate: false
+          sortKey: -1776213360178
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "page": 1,
+              "per_page": 10,
+              "search_value": "",
+              "search_by": "category_code"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/health
+        name: health
+        meta:
+          id: req_16n8ltrij972v0dvue0u7e
+          created: 1776213366178
+          modified: 1776213366178
+          isPrivate: false
+          sortKey: -1776213359178
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_gcq6nfcb94iqmfh0lshifo
+    created: 1776213366178
+    modified: 1776213366178
+environments:
+  name: Base Environment
+  meta:
+    id: env_qf0kjszjgq9hbz0wku0dk
+    created: 1776213366178
+    modified: 1776213366178
+    isPrivate: false

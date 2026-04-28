@@ -1,0 +1,301 @@
+{
+  "info": {
+    "_postman_id": "s69ps90afajwj9k62txktl",
+    "name": "Facility-helpdesk - Maintenance-report",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "restforge-generator"
+  },
+  "item": [
+    {
+      "name": "maintenance-report/datatables",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"draw\": 1,\n  \"start\": 0,\n  \"length\": 10,\n  \"search\": {\n    \"value\": \"\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/maintenance-report/datatables",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "maintenance-report",
+            "datatables"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "maintenance-report/lookup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-request-mode",
+            "value": "static",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"select\": [\n    \"report_id\",\n    \"report_number\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/maintenance-report/lookup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "maintenance-report",
+            "lookup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "maintenance-report/create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"report_id\": \"Demo report_id\",\n  \"report_number\": \"Demo report_number\",\n  \"reporter_id\": \"Demo reporter_id\",\n  \"category_id\": \"General\",\n  \"facility_id\": \"Demo facility_id\",\n  \"title\": \"Demo title\",\n  \"location_floor\": \"Demo location_floor\",\n  \"location_room\": \"Demo location_room\",\n  \"location_detail\": \"Demo location_detail\",\n  \"description\": \"Demo description text\",\n  \"urgency\": \"low\",\n  \"status\": \"pending\",\n  \"assigned_to_id\": \"Demo assigned_to_id\",\n  \"admin_note\": \"Demo admin_note\",\n  \"technician_note\": \"Demo technician_note\",\n  \"resolution_note\": \"Demo resolution_note\",\n  \"photo_before_url\": \"https://example.com\",\n  \"photo_after_url\": \"https://example.com\",\n  \"reported_at\": \"Demo reported_at\",\n  \"assigned_at\": \"Demo assigned_at\",\n  \"started_at\": \"Demo started_at\",\n  \"solved_at\": \"Demo solved_at\",\n  \"closed_at\": \"Demo closed_at\",\n  \"created_at\": \"Demo created_at\",\n  \"updated_at\": \"2026-04-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/maintenance-report/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "maintenance-report",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "maintenance-report/update",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"report_id\": \"Demo report_id\",\n  \"report_number\": \"Demo report_number\",\n  \"reporter_id\": \"Demo reporter_id\",\n  \"category_id\": \"General\",\n  \"facility_id\": \"Demo facility_id\",\n  \"title\": \"Demo title\",\n  \"location_floor\": \"Demo location_floor\",\n  \"location_room\": \"Demo location_room\",\n  \"location_detail\": \"Demo location_detail\",\n  \"description\": \"Demo description text\",\n  \"urgency\": \"low\",\n  \"status\": \"pending\",\n  \"assigned_to_id\": \"Demo assigned_to_id\",\n  \"admin_note\": \"Demo admin_note\",\n  \"technician_note\": \"Demo technician_note\",\n  \"resolution_note\": \"Demo resolution_note\",\n  \"photo_before_url\": \"https://example.com\",\n  \"photo_after_url\": \"https://example.com\",\n  \"reported_at\": \"Demo reported_at\",\n  \"assigned_at\": \"Demo assigned_at\",\n  \"started_at\": \"Demo started_at\",\n  \"solved_at\": \"Demo solved_at\",\n  \"closed_at\": \"Demo closed_at\",\n  \"created_at\": \"Demo created_at\",\n  \"updated_at\": \"2026-04-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/maintenance-report/update",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "maintenance-report",
+            "update"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "maintenance-report/first",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": {\n    \"key\": \"report_id\",\n    \"value\": \"Demo report_id\"\n  },\n  \"select\": [\n    \"report_id\",\n    \"report_number\",\n    \"reporter_id\",\n    \"category_id\",\n    \"facility_id\",\n    \"title\",\n    \"location_floor\",\n    \"location_room\",\n    \"location_detail\",\n    \"description\",\n    \"urgency\",\n    \"status\",\n    \"assigned_to_id\",\n    \"admin_note\",\n    \"technician_note\",\n    \"resolution_note\",\n    \"photo_before_url\",\n    \"photo_after_url\",\n    \"reported_at\",\n    \"assigned_at\",\n    \"started_at\",\n    \"solved_at\",\n    \"closed_at\",\n    \"created_at\",\n    \"updated_at\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/maintenance-report/first",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "maintenance-report",
+            "first"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "maintenance-report/delete",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": [\n    {\n      \"key\": \"report_id\",\n      \"value\": \"Demo report_id\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/maintenance-report/delete",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "maintenance-report",
+            "delete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "maintenance-report/read",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"page\": 1,\n  \"per_page\": 10,\n  \"search_value\": \"\",\n  \"search_by\": \"report_number\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/maintenance-report/read",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "maintenance-report",
+            "read"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "health",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/facility-helpdesk/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "facility-helpdesk",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

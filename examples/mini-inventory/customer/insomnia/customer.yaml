@@ -1,0 +1,282 @@
+type: collection.insomnia.rest/5.0
+name: Mini-inventory
+meta:
+  id: wrk_5fldapstieltls72q0a6lq
+  created: 1776213396938
+  modified: 1776213396938
+collection:
+  - name: customer
+    meta:
+      id: fld_mzjlo8iev5mrozeb3bs1gr
+      created: 1776213396938
+      modified: 1776213396938
+      sortKey: -1776213396938
+    children:
+      - url: http://localhost:3000/api/mini-inventory/customer/datatables
+        name: customer/datatables
+        meta:
+          id: req_0n6ckv87q85nfkx73yf8hj9
+          created: 1776213396938
+          modified: 1776213396938
+          isPrivate: false
+          sortKey: -1776213396938
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "draw": 1,
+              "start": 0,
+              "length": 10,
+              "search": {
+                "value": ""
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/customer/lookup
+        name: customer/lookup
+        meta:
+          id: req_x6cl2tjzulg1whm6j1tf8
+          created: 1776213396938
+          modified: 1776213396938
+          isPrivate: false
+          sortKey: -1776213395938
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "select": [
+                "customer_id",
+                "customer_code"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: x-request-mode
+            value: static
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/customer/create
+        name: customer/create
+        meta:
+          id: req_cza8uxcxttvbofw125bfp
+          created: 1776213396938
+          modified: 1776213396938
+          isPrivate: false
+          sortKey: -1776213394938
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "customer_id": "Demo customer_id",
+              "customer_code": "DMO001",
+              "customer_name": "Demo Name",
+              "contact_person": "Demo contact_person",
+              "phone": "+62812345678",
+              "email": "demo@example.com",
+              "address": "Jl. Demo Street No. 123",
+              "city": "Jakarta",
+              "country": "Indonesia",
+              "is_active": "Demo is_active"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/customer/update
+        name: customer/update
+        meta:
+          id: req_9btnp5y2465q6g8s1vpn5
+          created: 1776213396938
+          modified: 1776213396938
+          isPrivate: false
+          sortKey: -1776213393938
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "customer_id": "Demo customer_id",
+              "customer_code": "DMO001",
+              "customer_name": "Updated Demo Name",
+              "contact_person": "Demo contact_person",
+              "phone": "+62812345678",
+              "email": "updated@example.com",
+              "address": "Jl. Demo Street No. 123",
+              "city": "Jakarta",
+              "country": "Indonesia",
+              "is_active": "Demo is_active"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/customer/first
+        name: customer/first
+        meta:
+          id: req_y8z3hyqzcigds20u8cl4qa
+          created: 1776213396938
+          modified: 1776213396938
+          isPrivate: false
+          sortKey: -1776213392938
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": {
+                "key": "customer_id",
+                "value": "Demo customer_id"
+              },
+              "select": [
+                "customer_id",
+                "customer_code",
+                "customer_name",
+                "contact_person",
+                "phone",
+                "email",
+                "address",
+                "city",
+                "country",
+                "is_active"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/customer/delete
+        name: customer/delete
+        meta:
+          id: req_jx7jsbfjb5qlcalgpdhi5c
+          created: 1776213396938
+          modified: 1776213396938
+          isPrivate: false
+          sortKey: -1776213391938
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": [
+                {
+                  "key": "customer_id",
+                  "value": "Demo customer_id"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/customer/read
+        name: customer/read
+        meta:
+          id: req_uwhjjhkphcdzmv89wb0mk
+          created: 1776213396938
+          modified: 1776213396938
+          isPrivate: false
+          sortKey: -1776213390938
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "page": 1,
+              "per_page": 10,
+              "search_value": "",
+              "search_by": "customer_code"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/mini-inventory/health
+        name: health
+        meta:
+          id: req_pyg928xlq4k3tmc08i1c9
+          created: 1776213396938
+          modified: 1776213396938
+          isPrivate: false
+          sortKey: -1776213389938
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_zcm3hfvswdsxfts0ldj8ir
+    created: 1776213396938
+    modified: 1776213396938
+environments:
+  name: Base Environment
+  meta:
+    id: env_lkhndu7igehdtc1fblx0uf
+    created: 1776213396938
+    modified: 1776213396938
+    isPrivate: false

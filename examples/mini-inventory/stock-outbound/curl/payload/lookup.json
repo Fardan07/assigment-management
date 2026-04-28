@@ -1,0 +1,6 @@
+{
+  "select": [
+    "stock_outbound_id",
+    "outbound_number"
+  ]
+}

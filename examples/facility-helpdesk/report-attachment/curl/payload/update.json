@@ -1,0 +1,11 @@
+{
+  "attachment_id": "Demo attachment_id",
+  "report_id": "Demo report_id",
+  "attachment_type": "before",
+  "file_name": "Updated Demo Name",
+  "file_url": "https://example.com",
+  "mime_type": "Demo mime_type",
+  "file_size_bytes": "Demo file_size_bytes",
+  "uploaded_by": "Demo uploaded_by",
+  "created_at": "Demo created_at"
+}

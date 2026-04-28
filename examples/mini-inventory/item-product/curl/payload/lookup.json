@@ -1,0 +1,6 @@
+{
+  "select": [
+    "item_product_id",
+    "product_code"
+  ]
+}

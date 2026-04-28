@@ -1,0 +1,17 @@
+{
+  "where": {
+    "key": "attachment_id",
+    "value": "Demo attachment_id"
+  },
+  "select": [
+    "attachment_id",
+    "report_id",
+    "attachment_type",
+    "file_name",
+    "file_url",
+    "mime_type",
+    "file_size_bytes",
+    "uploaded_by",
+    "created_at"
+  ]
+}

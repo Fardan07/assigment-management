@@ -1,0 +1,929 @@
+{
+  "projectName": "mini-inventory",
+  "databaseType": "postgres",
+  "endpoints": {
+    "category": {
+      "tableName": "category",
+      "displayName": "Category",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "category_id",
+      "fieldName": [
+        "category_id",
+        "category_code",
+        "category_name",
+        "description",
+        "is_active"
+      ],
+      "fieldValidation": [
+        {
+          "name": "category_id",
+          "type": "string",
+          "constraints": {
+            "primaryKey": true,
+            "autoGenerate": true,
+            "required": true
+          }
+        },
+        {
+          "name": "category_code",
+          "type": "string",
+          "constraints": {
+            "uppercase": true
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "category_id": "General",
+          "category_code": "DMO001",
+          "category_name": "Demo Name",
+          "description": "Demo description text",
+          "is_active": "Demo is_active"
+        },
+        "update": {
+          "category_id": "General",
+          "category_code": "DMO001",
+          "category_name": "Updated Demo Name",
+          "description": "Demo description text",
+          "is_active": "Demo is_active"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "category_id",
+              "value": "General"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "category_id",
+              "value": "General"
+            }
+          ],
+          "select": [
+            "category_id",
+            "category_code",
+            "category_name",
+            "description",
+            "is_active"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "category_code"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "category_id",
+            "category_code"
+          ]
+        }
+      }
+    },
+    "warehouse": {
+      "tableName": "warehouse",
+      "displayName": "Warehouse",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "warehouse_id",
+      "fieldName": [
+        "warehouse_id",
+        "warehouse_code",
+        "warehouse_name",
+        "warehouse_type",
+        "address",
+        "city",
+        "capacity",
+        "is_active"
+      ],
+      "fieldValidation": [
+        {
+          "name": "warehouse_id",
+          "type": "string",
+          "constraints": {
+            "primaryKey": true,
+            "autoGenerate": true,
+            "required": true
+          }
+        },
+        {
+          "name": "capacity",
+          "type": "number",
+          "constraints": {
+            "precision": 2
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "warehouse_id": "Demo warehouse_id",
+          "warehouse_code": "DMO001",
+          "warehouse_name": "Demo Name",
+          "warehouse_type": "Demo warehouse_type",
+          "address": "Jl. Demo Street No. 123",
+          "city": "Jakarta",
+          "capacity": 100000,
+          "is_active": "Demo is_active"
+        },
+        "update": {
+          "warehouse_id": "Demo warehouse_id",
+          "warehouse_code": "DMO001",
+          "warehouse_name": "Updated Demo Name",
+          "warehouse_type": "Demo warehouse_type",
+          "address": "Jl. Demo Street No. 123",
+          "city": "Jakarta",
+          "capacity": 100000,
+          "is_active": "Demo is_active"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "warehouse_id",
+              "value": "Demo warehouse_id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "warehouse_id",
+              "value": "Demo warehouse_id"
+            }
+          ],
+          "select": [
+            "warehouse_id",
+            "warehouse_code",
+            "warehouse_name",
+            "warehouse_type",
+            "address",
+            "city",
+            "capacity",
+            "is_active"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "warehouse_code"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "warehouse_id",
+            "warehouse_code"
+          ]
+        }
+      }
+    },
+    "supplier": {
+      "tableName": "supplier",
+      "displayName": "Supplier",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "supplier_id",
+      "fieldName": [
+        "supplier_id",
+        "supplier_code",
+        "supplier_name",
+        "contact_person",
+        "phone",
+        "email",
+        "address",
+        "city",
+        "country",
+        "is_active"
+      ],
+      "fieldValidation": [
+        {
+          "name": "supplier_id",
+          "type": "string",
+          "constraints": {
+            "primaryKey": true,
+            "autoGenerate": true,
+            "required": true
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "supplier_id": "Demo supplier_id",
+          "supplier_code": "DMO001",
+          "supplier_name": "Demo Name",
+          "contact_person": "Demo contact_person",
+          "phone": "+62812345678",
+          "email": "demo@example.com",
+          "address": "Jl. Demo Street No. 123",
+          "city": "Jakarta",
+          "country": "Indonesia",
+          "is_active": "Demo is_active"
+        },
+        "update": {
+          "supplier_id": "Demo supplier_id",
+          "supplier_code": "DMO001",
+          "supplier_name": "Updated Demo Name",
+          "contact_person": "Demo contact_person",
+          "phone": "+62812345678",
+          "email": "updated@example.com",
+          "address": "Jl. Demo Street No. 123",
+          "city": "Jakarta",
+          "country": "Indonesia",
+          "is_active": "Demo is_active"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "supplier_id",
+              "value": "Demo supplier_id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "supplier_id",
+              "value": "Demo supplier_id"
+            }
+          ],
+          "select": [
+            "supplier_id",
+            "supplier_code",
+            "supplier_name",
+            "contact_person",
+            "phone",
+            "email",
+            "address",
+            "city",
+            "country",
+            "is_active"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "supplier_code"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "supplier_id",
+            "supplier_code"
+          ]
+        }
+      }
+    },
+    "customer": {
+      "tableName": "customer",
+      "displayName": "Customer",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "customer_id",
+      "fieldName": [
+        "customer_id",
+        "customer_code",
+        "customer_name",
+        "contact_person",
+        "phone",
+        "email",
+        "address",
+        "city",
+        "country",
+        "is_active"
+      ],
+      "fieldValidation": [
+        {
+          "name": "customer_id",
+          "type": "string",
+          "constraints": {
+            "primaryKey": true,
+            "autoGenerate": true,
+            "required": true
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "customer_id": "Demo customer_id",
+          "customer_code": "DMO001",
+          "customer_name": "Demo Name",
+          "contact_person": "Demo contact_person",
+          "phone": "+62812345678",
+          "email": "demo@example.com",
+          "address": "Jl. Demo Street No. 123",
+          "city": "Jakarta",
+          "country": "Indonesia",
+          "is_active": "Demo is_active"
+        },
+        "update": {
+          "customer_id": "Demo customer_id",
+          "customer_code": "DMO001",
+          "customer_name": "Updated Demo Name",
+          "contact_person": "Demo contact_person",
+          "phone": "+62812345678",
+          "email": "updated@example.com",
+          "address": "Jl. Demo Street No. 123",
+          "city": "Jakarta",
+          "country": "Indonesia",
+          "is_active": "Demo is_active"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "customer_id",
+              "value": "Demo customer_id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "customer_id",
+              "value": "Demo customer_id"
+            }
+          ],
+          "select": [
+            "customer_id",
+            "customer_code",
+            "customer_name",
+            "contact_person",
+            "phone",
+            "email",
+            "address",
+            "city",
+            "country",
+            "is_active"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "customer_code"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "customer_id",
+            "customer_code"
+          ]
+        }
+      }
+    },
+    "item-product": {
+      "tableName": "item_product",
+      "displayName": "Item-Product",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "item_product_id",
+      "fieldName": [
+        "item_product_id",
+        "product_code",
+        "sku",
+        "product_name",
+        "category_id",
+        "category_name",
+        "brand",
+        "description",
+        "purchase_price",
+        "selling_price",
+        "stock",
+        "min_stock",
+        "uom",
+        "weight",
+        "is_active",
+        "show_in_store",
+        "barcode",
+        "shelf_location"
+      ],
+      "fieldValidation": [
+        {
+          "name": "item_product_id",
+          "type": "uuid",
+          "constraints": {
+            "primaryKey": true,
+            "autoGenerate": true
+          }
+        },
+        {
+          "name": "product_code",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "maxLength": 20,
+            "unique": true,
+            "trim": true,
+            "uppercase": true
+          }
+        },
+        {
+          "name": "selling_price",
+          "type": "number",
+          "constraints": {
+            "required": false,
+            "min": 0,
+            "default": 0
+          }
+        },
+        {
+          "name": "stock",
+          "type": "number",
+          "constraints": {
+            "required": true,
+            "min": 0,
+            "default": 0
+          }
+        },
+        {
+          "name": "min_stock",
+          "type": "number",
+          "constraints": {
+            "required": false,
+            "min": 0,
+            "default": 0
+          }
+        },
+        {
+          "name": "weight",
+          "type": "number",
+          "constraints": {
+            "required": false,
+            "min": 0,
+            "default": 0
+          }
+        },
+        {
+          "name": "uom",
+          "type": "string",
+          "constraints": {
+            "required": false,
+            "enum": [
+              "pcs",
+              "box",
+              "kg"
+            ],
+            "default": "pcs"
+          }
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "constraints": {
+            "required": false,
+            "enum": [
+              "true",
+              "false"
+            ],
+            "default": "true"
+          }
+        },
+        {
+          "name": "show_in_store",
+          "type": "boolean",
+          "constraints": {
+            "required": false,
+            "enum": [
+              "true",
+              "false"
+            ],
+            "default": "true"
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "item_product_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "product_code": "DMO001",
+          "sku": "Demo sku",
+          "product_name": "Demo Name",
+          "category_id": "General",
+          "category_name": "Demo Name",
+          "brand": "Demo brand",
+          "description": "Demo description text",
+          "purchase_price": 100000,
+          "selling_price": 0,
+          "stock": 0,
+          "min_stock": 0,
+          "uom": "pcs",
+          "weight": 0,
+          "is_active": "true",
+          "show_in_store": "true",
+          "barcode": "DMO001",
+          "shelf_location": "Demo shelf_location"
+        },
+        "update": {
+          "item_product_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "product_code": "DMO001",
+          "sku": "Demo sku",
+          "product_name": "Updated Demo Name",
+          "category_id": "General",
+          "category_name": "Updated Demo Name",
+          "brand": "Demo brand",
+          "description": "Demo description text",
+          "purchase_price": 100000,
+          "selling_price": 0,
+          "stock": 0,
+          "min_stock": 0,
+          "uom": "pcs",
+          "weight": 0,
+          "is_active": "true",
+          "show_in_store": "true",
+          "barcode": "DMO001",
+          "shelf_location": "Demo shelf_location"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "item_product_id",
+              "value": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "item_product_id",
+              "value": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+            }
+          ],
+          "select": [
+            "item_product_id",
+            "product_code",
+            "sku",
+            "product_name",
+            "category_id",
+            "category_name",
+            "brand",
+            "description",
+            "purchase_price",
+            "selling_price",
+            "stock",
+            "min_stock",
+            "uom",
+            "weight",
+            "is_active",
+            "show_in_store",
+            "barcode",
+            "shelf_location"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "product_code"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "item_product_id",
+            "product_code"
+          ]
+        }
+      }
+    },
+    "stock-inbound": {
+      "tableName": "stock_inbound",
+      "displayName": "Stock-Inbound",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": true,
+        "updateComposite": true,
+        "readComposite": true,
+        "workflow": false
+      },
+      "primaryKey": "stock_inbound_id",
+      "fieldName": [
+        "stock_inbound_id",
+        "inbound_number",
+        "inbound_date",
+        "warehouse_id",
+        "supplier_id",
+        "reference_number",
+        "notes",
+        "total_items",
+        "total_qty",
+        "total_amount",
+        "status"
+      ],
+      "fieldValidation": [],
+      "samples": {
+        "create": {
+          "stock_inbound_id": "Demo stock_inbound_id",
+          "inbound_number": "Demo inbound_number",
+          "inbound_date": "2026-04-15",
+          "warehouse_id": "Demo warehouse_id",
+          "supplier_id": "Demo supplier_id",
+          "reference_number": "Demo reference_number",
+          "notes": "Demo notes",
+          "total_items": "Demo total_items",
+          "total_qty": "Demo total_qty",
+          "total_amount": 100000,
+          "status": "active"
+        },
+        "update": {
+          "stock_inbound_id": "Demo stock_inbound_id",
+          "inbound_number": "Demo inbound_number",
+          "inbound_date": "2026-04-15",
+          "warehouse_id": "Demo warehouse_id",
+          "supplier_id": "Demo supplier_id",
+          "reference_number": "Demo reference_number",
+          "notes": "Demo notes",
+          "total_items": "Demo total_items",
+          "total_qty": "Demo total_qty",
+          "total_amount": 100000,
+          "status": "active"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "stock_inbound_id",
+              "value": "Demo stock_inbound_id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "stock_inbound_id",
+              "value": "Demo stock_inbound_id"
+            }
+          ],
+          "select": [
+            "stock_inbound_id",
+            "inbound_number",
+            "inbound_date",
+            "warehouse_id",
+            "supplier_id",
+            "reference_number",
+            "notes",
+            "total_items",
+            "total_qty",
+            "total_amount",
+            "status"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "inbound_number"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "stock_inbound_id",
+            "inbound_number"
+          ]
+        }
+      }
+    },
+    "stock-outbound": {
+      "tableName": "stock_outbound",
+      "displayName": "Stock-Outbound",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": true,
+        "updateComposite": true,
+        "readComposite": true,
+        "workflow": false
+      },
+      "primaryKey": "stock_outbound_id",
+      "fieldName": [
+        "stock_outbound_id",
+        "outbound_number",
+        "outbound_date",
+        "warehouse_id",
+        "customer_id",
+        "reference_number",
+        "notes",
+        "total_items",
+        "total_qty",
+        "total_amount",
+        "status"
+      ],
+      "fieldValidation": [],
+      "samples": {
+        "create": {
+          "stock_outbound_id": "Demo stock_outbound_id",
+          "outbound_number": "Demo outbound_number",
+          "outbound_date": "2026-04-15",
+          "warehouse_id": "Demo warehouse_id",
+          "customer_id": "Demo customer_id",
+          "reference_number": "Demo reference_number",
+          "notes": "Demo notes",
+          "total_items": "Demo total_items",
+          "total_qty": "Demo total_qty",
+          "total_amount": 100000,
+          "status": "active"
+        },
+        "update": {
+          "stock_outbound_id": "Demo stock_outbound_id",
+          "outbound_number": "Demo outbound_number",
+          "outbound_date": "2026-04-15",
+          "warehouse_id": "Demo warehouse_id",
+          "customer_id": "Demo customer_id",
+          "reference_number": "Demo reference_number",
+          "notes": "Demo notes",
+          "total_items": "Demo total_items",
+          "total_qty": "Demo total_qty",
+          "total_amount": 100000,
+          "status": "active"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "stock_outbound_id",
+              "value": "Demo stock_outbound_id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "stock_outbound_id",
+              "value": "Demo stock_outbound_id"
+            }
+          ],
+          "select": [
+            "stock_outbound_id",
+            "outbound_number",
+            "outbound_date",
+            "warehouse_id",
+            "customer_id",
+            "reference_number",
+            "notes",
+            "total_items",
+            "total_qty",
+            "total_amount",
+            "status"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "outbound_number"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "stock_outbound_id",
+            "outbound_number"
+          ]
+        }
+      }
+    }
+  },
+  "processors": {}
+}

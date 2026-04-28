@@ -1,0 +1,19 @@
+{
+  "where": {
+    "key": "stock_inbound_id",
+    "value": "Demo stock_inbound_id"
+  },
+  "select": [
+    "stock_inbound_id",
+    "inbound_number",
+    "inbound_date",
+    "warehouse_id",
+    "supplier_id",
+    "reference_number",
+    "notes",
+    "total_items",
+    "total_qty",
+    "total_amount",
+    "status"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "supplier_id": "Demo supplier_id",
+  "supplier_code": "DMO001",
+  "supplier_name": "Demo Name",
+  "contact_person": "Demo contact_person",
+  "phone": "+62812345678",
+  "email": "demo@example.com",
+  "address": "Jl. Demo Street No. 123",
+  "city": "Jakarta",
+  "country": "Indonesia",
+  "is_active": "Demo is_active"
+}

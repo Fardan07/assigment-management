@@ -1,0 +1,6 @@
+{
+  "select": [
+    "user_id",
+    "employee_code"
+  ]
+}

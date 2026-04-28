@@ -1,0 +1,297 @@
+type: collection.insomnia.rest/5.0
+name: Facility-helpdesk
+meta:
+  id: wrk_atxdq0e6h2fsu23iz1mptp
+  created: 1776217418391
+  modified: 1776217418391
+collection:
+  - name: facility-asset
+    meta:
+      id: fld_c6z484kq2t9daa8bi6nq8r
+      created: 1776217418391
+      modified: 1776217418391
+      sortKey: -1776217418391
+    children:
+      - url: http://localhost:3000/api/facility-helpdesk/facility-asset/datatables
+        name: facility-asset/datatables
+        meta:
+          id: req_7gaxe3i0q9peri7yg66zd
+          created: 1776217418391
+          modified: 1776217418391
+          isPrivate: false
+          sortKey: -1776217418391
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "draw": 1,
+              "start": 0,
+              "length": 10,
+              "search": {
+                "value": ""
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/facility-asset/lookup
+        name: facility-asset/lookup
+        meta:
+          id: req_7ozx56itihszgcgvjfi2m
+          created: 1776217418391
+          modified: 1776217418391
+          isPrivate: false
+          sortKey: -1776217417391
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "select": [
+                "facility_id",
+                "facility_code"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: x-request-mode
+            value: static
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/facility-asset/create
+        name: facility-asset/create
+        meta:
+          id: req_i78a0vv7nwqieg9st0ldps
+          created: 1776217418391
+          modified: 1776217418391
+          isPrivate: false
+          sortKey: -1776217416391
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "facility_id": "Demo facility_id",
+              "facility_code": "DMO001",
+              "facility_name": "Demo Name",
+              "facility_type": "Demo facility_type",
+              "floor_level": "Demo floor_level",
+              "room_name": "Demo Name",
+              "location_detail": "Demo location_detail",
+              "brand": "Demo brand",
+              "model": "Demo model",
+              "serial_number": "Demo serial_number",
+              "condition_status": "good",
+              "is_active": true,
+              "notes": "Demo notes",
+              "created_at": "Demo created_at",
+              "updated_at": "2026-04-15"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/facility-asset/update
+        name: facility-asset/update
+        meta:
+          id: req_pvshzpldt7iucekya6q67o
+          created: 1776217418391
+          modified: 1776217418391
+          isPrivate: false
+          sortKey: -1776217415391
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "facility_id": "Demo facility_id",
+              "facility_code": "DMO001",
+              "facility_name": "Updated Demo Name",
+              "facility_type": "Demo facility_type",
+              "floor_level": "Demo floor_level",
+              "room_name": "Updated Demo Name",
+              "location_detail": "Demo location_detail",
+              "brand": "Demo brand",
+              "model": "Demo model",
+              "serial_number": "Demo serial_number",
+              "condition_status": "good",
+              "is_active": true,
+              "notes": "Demo notes",
+              "created_at": "Demo created_at",
+              "updated_at": "2026-04-15"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/facility-asset/first
+        name: facility-asset/first
+        meta:
+          id: req_zs25b7tc2tmeigkpy1hs4c
+          created: 1776217418391
+          modified: 1776217418391
+          isPrivate: false
+          sortKey: -1776217414391
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": {
+                "key": "facility_id",
+                "value": "Demo facility_id"
+              },
+              "select": [
+                "facility_id",
+                "facility_code",
+                "facility_name",
+                "facility_type",
+                "floor_level",
+                "room_name",
+                "location_detail",
+                "brand",
+                "model",
+                "serial_number",
+                "condition_status",
+                "is_active",
+                "notes",
+                "created_at",
+                "updated_at"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/facility-asset/delete
+        name: facility-asset/delete
+        meta:
+          id: req_vxyls7ym3zk4j0vsaqycnf
+          created: 1776217418391
+          modified: 1776217418391
+          isPrivate: false
+          sortKey: -1776217413391
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": [
+                {
+                  "key": "facility_id",
+                  "value": "Demo facility_id"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/facility-asset/read
+        name: facility-asset/read
+        meta:
+          id: req_grgcbsqy8skwkafgbexus
+          created: 1776217418391
+          modified: 1776217418391
+          isPrivate: false
+          sortKey: -1776217412391
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "page": 1,
+              "per_page": 10,
+              "search_value": "",
+              "search_by": "facility_code"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/health
+        name: health
+        meta:
+          id: req_67t8xi43pk2oet3t9rwe3
+          created: 1776217418391
+          modified: 1776217418391
+          isPrivate: false
+          sortKey: -1776217411391
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_4se3thpclpjq6u6oren9
+    created: 1776217418391
+    modified: 1776217418391
+environments:
+  name: Base Environment
+  meta:
+    id: env_baytgwe0fz7zlrqj6pahth
+    created: 1776217418391
+    modified: 1776217418391
+    isPrivate: false

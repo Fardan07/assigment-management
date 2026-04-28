@@ -1,0 +1,15 @@
+{
+  "user_id": "Demo user_id",
+  "employee_code": "DMO001",
+  "full_name": "Updated Demo Name",
+  "email": "updated@example.com",
+  "phone": "+62812345678",
+  "password_hash": "Demo password_hash",
+  "role": "USER",
+  "department": "Demo department",
+  "job_title": "Demo job_title",
+  "is_active": true,
+  "last_login_at": "Demo last_login_at",
+  "created_at": "Demo created_at",
+  "updated_at": "2026-04-15"
+}

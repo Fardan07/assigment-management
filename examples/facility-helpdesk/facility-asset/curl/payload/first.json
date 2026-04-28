@@ -1,0 +1,23 @@
+{
+  "where": {
+    "key": "facility_id",
+    "value": "Demo facility_id"
+  },
+  "select": [
+    "facility_id",
+    "facility_code",
+    "facility_name",
+    "facility_type",
+    "floor_level",
+    "room_name",
+    "location_detail",
+    "brand",
+    "model",
+    "serial_number",
+    "condition_status",
+    "is_active",
+    "notes",
+    "created_at",
+    "updated_at"
+  ]
+}

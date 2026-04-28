@@ -1,0 +1,6 @@
+{
+  "select": [
+    "report_id",
+    "report_number"
+  ]
+}

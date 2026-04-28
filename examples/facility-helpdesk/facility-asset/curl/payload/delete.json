@@ -1,0 +1,8 @@
+{
+  "where": [
+    {
+      "key": "facility_id",
+      "value": "Demo facility_id"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "item_product_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "product_code": "DMO001",
+  "sku": "Demo sku",
+  "product_name": "Demo Name",
+  "category_id": "General",
+  "category_name": "Demo Name",
+  "brand": "Demo brand",
+  "description": "Demo description text",
+  "purchase_price": 100000,
+  "selling_price": 0,
+  "stock": 0,
+  "min_stock": 0,
+  "uom": "pcs",
+  "weight": 0,
+  "is_active": "true",
+  "show_in_store": "true",
+  "barcode": "DMO001",
+  "shelf_location": "Demo shelf_location"
+}

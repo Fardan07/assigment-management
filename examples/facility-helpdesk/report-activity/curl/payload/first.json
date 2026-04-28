@@ -1,0 +1,16 @@
+{
+  "where": {
+    "key": "activity_id",
+    "value": "Demo activity_id"
+  },
+  "select": [
+    "activity_id",
+    "report_id",
+    "actor_id",
+    "activity_type",
+    "status_from",
+    "status_to",
+    "activity_note",
+    "activity_at"
+  ]
+}

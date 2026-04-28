@@ -1,0 +1,270 @@
+type: collection.insomnia.rest/5.0
+name: Facility-helpdesk
+meta:
+  id: wrk_oe1l6l6yk5eonb82c11x1o
+  created: 1776217423358
+  modified: 1776217423358
+collection:
+  - name: report-comment
+    meta:
+      id: fld_wgttbiapu6fluvomj9gw
+      created: 1776217423358
+      modified: 1776217423358
+      sortKey: -1776217423358
+    children:
+      - url: http://localhost:3000/api/facility-helpdesk/report-comment/datatables
+        name: report-comment/datatables
+        meta:
+          id: req_krh4t17zsi954m94ar0ii4
+          created: 1776217423358
+          modified: 1776217423358
+          isPrivate: false
+          sortKey: -1776217423358
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "draw": 1,
+              "start": 0,
+              "length": 10,
+              "search": {
+                "value": ""
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-comment/lookup
+        name: report-comment/lookup
+        meta:
+          id: req_kq9j062r84px4z9q7bqgl
+          created: 1776217423358
+          modified: 1776217423358
+          isPrivate: false
+          sortKey: -1776217422358
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "select": [
+                "comment_id",
+                "report_id"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: x-request-mode
+            value: static
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-comment/create
+        name: report-comment/create
+        meta:
+          id: req_qavth7gql6j50z7zr318l
+          created: 1776217423358
+          modified: 1776217423358
+          isPrivate: false
+          sortKey: -1776217421358
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "comment_id": "Demo comment_id",
+              "report_id": "Demo report_id",
+              "author_id": "Demo author_id",
+              "comment_text": "Demo comment_text",
+              "is_internal": "Demo is_internal",
+              "created_at": "Demo created_at"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-comment/update
+        name: report-comment/update
+        meta:
+          id: req_8f6q6f5mj9qcmy1saj29iv
+          created: 1776217423358
+          modified: 1776217423358
+          isPrivate: false
+          sortKey: -1776217420358
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "comment_id": "Demo comment_id",
+              "report_id": "Demo report_id",
+              "author_id": "Demo author_id",
+              "comment_text": "Demo comment_text",
+              "is_internal": "Demo is_internal",
+              "created_at": "Demo created_at"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-comment/first
+        name: report-comment/first
+        meta:
+          id: req_3x0wwpnwo1l5lpxa9kl9e
+          created: 1776217423358
+          modified: 1776217423358
+          isPrivate: false
+          sortKey: -1776217419358
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": {
+                "key": "comment_id",
+                "value": "Demo comment_id"
+              },
+              "select": [
+                "comment_id",
+                "report_id",
+                "author_id",
+                "comment_text",
+                "is_internal",
+                "created_at"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-comment/delete
+        name: report-comment/delete
+        meta:
+          id: req_eif7f9i6vtucx8m73xorej
+          created: 1776217423358
+          modified: 1776217423358
+          isPrivate: false
+          sortKey: -1776217418358
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": [
+                {
+                  "key": "comment_id",
+                  "value": "Demo comment_id"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/report-comment/read
+        name: report-comment/read
+        meta:
+          id: req_vn3uqd5rfzr255iwqv585d
+          created: 1776217423358
+          modified: 1776217423358
+          isPrivate: false
+          sortKey: -1776217417358
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "page": 1,
+              "per_page": 10,
+              "search_value": "",
+              "search_by": "comment_text"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/facility-helpdesk/health
+        name: health
+        meta:
+          id: req_yrjf0h1wk2cb7vt8sgwmf5
+          created: 1776217423358
+          modified: 1776217423358
+          isPrivate: false
+          sortKey: -1776217416358
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_bq8y8hqrneq5deoph0bpz7
+    created: 1776217423358
+    modified: 1776217423358
+environments:
+  name: Base Environment
+  meta:
+    id: env_yldmfx9axofswm9j3swzyh
+    created: 1776217423358
+    modified: 1776217423358
+    isPrivate: false
