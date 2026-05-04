@@ -1688,4 +1688,132 @@ router.get('/health', (req, res) => {
   });
 });
 
+function buildMaintenanceReportSummaryResponse(result) {
+  if (!result.data || !Array.isArray(result.data)) {
+    return {
+      success: true,
+      summary: {
+        total_reports: 0,
+        by_status: {
+          draft: 0,
+          submitted: 0,
+          rejected_by_wom: 0,
+          assigned: 0,
+          in_progress: 0,
+          pending_review: 0,
+          rejected: 0,
+          approved: 0
+        },
+        by_urgency: {
+          low: 0,
+          medium: 0,
+          high: 0
+        },
+        not_processed: 0,
+        in_progress_count: 0,
+        completed: 0
+      },
+      latest: [],
+      timestamp: new Date().toISOString()
+    };
+  }
+
+  const data = result.data;
+  const statusCounts = {
+    draft: 0,
+    submitted: 0,
+    rejected_by_wom: 0,
+    assigned: 0,
+    in_progress: 0,
+    pending_review: 0,
+    rejected: 0,
+    approved: 0
+  };
+
+  const urgencyCounts = {
+    low: 0,
+    medium: 0,
+    high: 0
+  };
+
+  const latest = [];
+
+  data.forEach(row => {
+    const status = (row.status || 'draft').toLowerCase();
+    const urgency = (row.urgency || 'low').toLowerCase();
+
+    if (statusCounts.hasOwnProperty(status)) {
+      statusCounts[status]++;
+    }
+
+    if (urgencyCounts.hasOwnProperty(urgency)) {
+      urgencyCounts[urgency]++;
+    }
+
+    if (latest.length < 10) {
+      latest.push({
+        report_id: row.report_id,
+        report_number: row.report_number,
+        title: row.title,
+        status: row.status,
+        urgency: row.urgency,
+        category_name: row.category_name,
+        reporter_name: row.reporter_name,
+        reported_at: row.reported_at
+      });
+    }
+  });
+
+  const totalReports = data.length;
+  const notProcessed = statusCounts.draft + statusCounts.submitted;
+
+  return {
+    success: true,
+    summary: {
+      total_reports: totalReports,
+      by_status: statusCounts,
+      by_urgency: urgencyCounts,
+      not_processed: notProcessed,
+      in_progress_count: statusCounts.in_progress,
+      completed: statusCounts.approved
+    },
+    latest,
+    timestamp: new Date().toISOString()
+  };
+}
+
+async function getMaintenanceReportSummary(req, res) {
+  try {
+    console.log('[Summary] Fetching maintenance report list...');
+    // Gunakan model untuk get all data, kemudian aggregate di memory
+    const result = await maintenanceReportModel.getList({ limit: 10000 });
+    console.log('[Summary] Result received:', { hasData: !!result.data, dataLength: result.data?.length || 0 });
+    res.json(buildMaintenanceReportSummaryResponse(result));
+  } catch (error) {
+    console.error('Error in maintenance-report summary:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Internal Server Error',
+      message: 'An error occurred while fetching summary data',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined,
+      timestamp: new Date().toISOString()
+    });
+  }
+}
+
+// GET /api/facility-helpdesk/maintenance-report/summary - Dashboard summary statistics
+router.get('/summary', getMaintenanceReportSummary);
+
+// Backward-compatible alias for older dashboard builds
+router.get('/statistics', getMaintenanceReportSummary);
+
+// Health check endpoint
+router.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    endpoint: 'maintenance-report',
+    timestamp: new Date().toISOString()
+  });
+});
+
 module.exports = router;
