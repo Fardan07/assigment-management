@@ -1,0 +1,7 @@
+{
+  "name": "issue-category",
+  "label": "Kategori Isu",
+  "endpoint": "/issue-category",
+  "primaryPage": "reports.html",
+  "actions": ["datatables", "create", "update", "delete", "first", "lookup", "read"]
+}

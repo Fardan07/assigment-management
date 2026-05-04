@@ -1,0 +1,7 @@
+{
+  "name": "report-activity",
+  "label": "Aktivitas Laporan",
+  "endpoint": "/report-activity",
+  "primaryPage": "reports.html",
+  "actions": ["datatables", "create", "update", "delete", "first", "lookup", "read"]
+}

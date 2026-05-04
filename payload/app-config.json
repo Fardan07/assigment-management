@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "projectType": "frontend",
+  "stack": "vanilla-js-auth",
+  "appName": "Facility Helpdesk",
+  "appCode": "K5BK0H3ATT",
+  "authBaseUrl": "https://restforge.dev/api/auth",
+  "apiBaseUrl": "http://192.168.1.24:3032/api/facility-helpdesk/",
+  "idleTimeoutMinutes": 30
+}

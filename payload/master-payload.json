@@ -1,0 +1,39 @@
+{
+  "appConfig": {
+    "version": "1.0",
+    "projectType": "frontend",
+    "stack": "vanilla-js-auth",
+    "appName": "Facility Helpdesk",
+    "appCode": "K5BK0H3ATT",
+    "authBaseUrl": "https://restforge.dev/api/auth",
+    "apiBaseUrl": "http://10.218.11.116:3032/api/facility-helpdesk",
+    "idleTimeoutMinutes": 30
+  },
+  "scope": ["form"],
+  "entities": [
+    {
+      "name": "maintenance-report",
+      "label": "Laporan Kerusakan",
+      "endpoint": "/maintenance-report",
+      "actions": ["create", "read", "update", "delete", "datatables"],
+      "fields": [
+        { "name": "report_id", "label": "ID", "type": "number", "primary": true },
+        { "name": "title", "label": "Judul Laporan", "type": "text" },
+        { "name": "location_floor", "label": "Lantai", "type": "text" },
+        { "name": "location_room", "label": "Ruangan", "type": "text" },
+        { "name": "location_detail", "label": "Detail Lokasi", "type": "textarea" },
+        { "name": "urgency", "label": "Urgensi", "type": "text" }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "page_id": "maintenance-report",
+      "page_name": "maintenance-report",
+      "title": "Form Pelaporan Kerusakan",
+      "file": "landing-page.html",
+      "type": "crud",
+      "entity": "maintenance-report"
+    }
+  ]
+}

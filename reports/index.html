@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <base href="../" />
+    <title>Manajemen Laporan - Facility Helpdesk</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="kt_app_body" data-kt-app-header-fixed-mobile="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" class="app-default bg-body-secondary">
+    <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+        <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+            
+            <!-- Header -->
+            <div id="kt_app_header" class="app-header bg-white border-bottom shadow-sm">
+                <div class="app-container container-fluid d-flex flex-stack" id="kt_app_header_container">
+                    <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3 py-4">
+                        <h1 class="page-heading d-flex text-dark fw-bolder fs-3 flex-column justify-content-center my-0">Manajemen Laporan</h1>
+                        <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-2">
+                            <li class="breadcrumb-item text-muted">Operasional</li>
+                            <li class="breadcrumb-item"><span class="bullet bg-gray-300 w-5px h-2px"></span></li>
+                            <li class="breadcrumb-item text-primary">Laporan Kerusakan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+                <div id="kt_app_sidebar" class="app-sidebar flex-column"></div>
+                
+                <!-- Main Content -->
+                <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                    <div class="d-flex flex-column flex-column-fluid">
+                        <div id="kt_app_content" class="app-content flex-column-fluid mt-6">
+                            <div id="kt_app_content_container" class="app-container container-fluid">
+                                
+                                <!-- Card Datatable -->
+                                <div class="card shadow-sm border-0 rounded-4">
+                                    <div class="card-header border-bottom-0 pt-8 pb-4 px-8">
+                                        <div class="card-title">
+                                            <div class="d-flex align-items-center position-relative my-1">
+                                                <i class="ki-outline ki-magnifier fs-2 position-absolute ms-4 text-muted"></i>
+                                                <input type="text" data-kt-report-table-filter="search" class="form-control form-control-solid w-250px ps-12 rounded-3 bg-light" placeholder="Cari laporan..." />
+                                            </div>
+                                        </div>
+                                        <div class="card-toolbar">
+                                            <button type="button" class="btn btn-primary rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#modal-report">
+                                                <i class="ki-outline ki-plus fs-2"></i>Buat Laporan Baru
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-body py-4 px-8">
+                                        <div class="table-responsive">
+                                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="report-table">
+                                                <thead class="bg-light rounded">
+                                                    <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                                        <th class="min-w-100px ps-4 rounded-start">ID Laporan</th>
+                                                        <th class="min-w-150px">Judul & Fasilitas</th>
+                                                        <th class="min-w-150px">Lokasi</th>
+                                                        <th class="min-w-100px text-center">Urgensi</th>
+                                                        <th class="min-w-100px text-center">Status</th>
+                                                        <th class="text-end min-w-100px pe-4 rounded-end">Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <!-- Tbody dibiarkan kosong untuk diisi via JS -->
+                                                <tbody class="text-gray-700 fw-semibold">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Input Laporan -->
+    <div class="modal fade" id="modal-report" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered mw-700px">
+            <div class="modal-content rounded-4">
+                <div class="modal-header border-bottom-0 pb-0 mt-5 px-9">
+                    <h2 class="fw-bolder text-dark">Input Laporan Kerusakan</h2>
+                    <div class="btn btn-sm btn-icon btn-active-color-primary bg-light" data-bs-dismiss="modal">
+                        <i class="ki-outline ki-cross fs-1"></i>
+                    </div>
+                </div>
+                
+                <div class="modal-body scroll-y px-10 py-8">
+                    <form id="form-report" class="form">
+                        <div class="fv-row mb-8">
+                            <label class="required fs-6 fw-semibold mb-2">Judul Kerusakan</label>
+                            <input type="text" class="form-control form-control-solid rounded-3" name="title" placeholder="Contoh: AC Bocor menetes ke lantai..." />
+                        </div>
+                        
+                        <div class="row g-8 mb-8">
+                            <div class="col-md-6 fv-row">
+                                <label class="required fs-6 fw-semibold mb-2">Kategori</label>
+                                <select class="form-select form-select-solid rounded-3" name="category" data-control="select2" data-hide-search="true" data-placeholder="Pilih Kategori">
+                                    <option value=""></option>
+                                    <option value="AC">AC & Pendingin</option>
+                                    <option value="Listrik">Kelistrikan</option>
+                                    <option value="Air">Saluran Air</option>
+                                    <option value="Furniture">Furniture/Meja/Kursi</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 fv-row">
+                                <label class="required fs-6 fw-semibold mb-2">Tingkat Urgensi</label>
+                                <select class="form-select form-select-solid rounded-3" name="urgency" data-control="select2" data-hide-search="true">
+                                    <option value="Normal">Normal (1-2 Hari)</option>
+                                    <option value="Sedang">Penting (Dihari yang sama)</option>
+                                    <option value="Darurat">Darurat (Butuh segera!)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="fv-row mb-8">
+                            <label class="required fs-6 fw-semibold mb-2">Deskripsi Detail</label>
+                            <textarea class="form-control form-control-solid rounded-3" name="description" rows="4" placeholder="Jelaskan secara detail mengenai kerusakan yang terjadi..."></textarea>
+                        </div>
+                        
+                        <div class="row g-8 mb-8">
+                            <div class="col-md-4 fv-row">
+                                <label class="fs-6 fw-semibold mb-2">Lokasi Lantai</label>
+                                <input type="number" class="form-control form-control-solid rounded-3" name="location_floor" placeholder="Contoh: 3" />
+                            </div>
+                            <div class="col-md-4 fv-row">
+                                <label class="fs-6 fw-semibold mb-2">Nama Ruangan</label>
+                                <input type="text" class="form-control form-control-solid rounded-3" name="location_room" placeholder="Contoh: R. Meeting" />
+                            </div>
+                            <div class="col-md-4 fv-row">
+                                <label class="fs-6 fw-semibold mb-2">Detail Posisi</label>
+                                <input type="text" class="form-control form-control-solid rounded-3" name="location_detail" placeholder="Pojok kanan..." />
+                            </div>
+                        </div>
+                        
+                        <div class="fv-row mb-8">
+                            <label class="fs-6 fw-semibold mb-2 d-block">Foto Masalah (Opsional)</label>
+                            <div class="border border-dashed border-gray-300 rounded-3 p-7 text-center bg-light-primary">
+                                <input type="file" class="d-none" id="customFile" name="photo_before" accept="image/*" />
+                                <label for="customFile" class="cursor-pointer">
+                                    <i class="ki-outline ki-file-up fs-3x text-primary mb-3"></i>
+                                    <div class="fs-5 fw-bold text-gray-800 mb-1">Klik untuk upload foto</div>
+                                    <div class="fs-7 text-muted">Format: JPG, PNG, GIF. Maksimal 5MB</div>
+                                </label>
+                                <div id="photo-preview" class="mt-3"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-end pt-5">
+                            <button type="reset" class="btn btn-light me-3 rounded-3" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary rounded-3 shadow-sm">
+                                <span class="indicator-label"><i class="ki-outline ki-send fs-3 me-1"></i> Kirim Laporan</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/plugins/global/plugins.bundle.js"></script>
+    <script src="assets/js/scripts.bundle.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/reports.js"></script>
+</body>
+</html>

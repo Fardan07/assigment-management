@@ -1,0 +1,7 @@
+{
+  "name": "app-user",
+  "label": "User & Teknisi",
+  "endpoint": "/app-user",
+  "primaryPage": "users.html",
+  "actions": ["datatables", "create", "update", "delete", "first", "lookup", "read"]
+}

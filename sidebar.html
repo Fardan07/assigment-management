@@ -1,0 +1,71 @@
+<!--begin::Sidebar Header-->
+<div class="app-sidebar-header d-none d-lg-flex px-6 pt-8 pb-4" id="kt_app_sidebar_header">
+    <div class="btn btn-outline btn-custom btn-flex w-100">
+        <span class="d-flex flex-column align-items-start flex-grow-1">
+            <span class="fs-5 fw-bold text-white text-uppercase">Facility Helpdesk</span>
+            <span class="fs-7 fw-bold text-gray-700 lh-sm">4 Role Access</span>
+        </span>
+    </div>
+</div>
+<!--end::Sidebar Header-->
+<!--begin::Sidebar Navs-->
+<div class="app-sidebar-navs flex-column-fluid mx-2 py-6" id="kt_app_sidebar_navs">
+    <div id="kt_app_sidebar_navs_wrappers" class="hover-scroll-y my-2" data-kt-scroll="true"
+        data-kt-scroll-activate="true" data-kt-scroll-height="auto"
+        data-kt-scroll-dependencies="#kt_app_sidebar_header, #kt_app_sidebar_footer"
+        data-kt-scroll-wrappers="#kt_app_sidebar_navs" data-kt-scroll-offset="5px">
+        <div class="menu menu-rounded menu-column">
+            <div class="menu-item" data-roles="REQUESTER,WO_MANAGER,TECHNICIAN,SITE_MANAGER">
+                <a href="index.html" class="menu-link">
+                    <span class="menu-icon"><i class="ki-outline ki-home fs-2"></i></span>
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </div>
+            <div class="menu-item" data-roles="REQUESTER">
+                <a href="reports.html" class="menu-link">
+                    <span class="menu-icon"><i class="ki-outline ki-message-question fs-2"></i></span>
+                    <span class="menu-title">Laporan Kerusakan</span>
+                </a>
+            </div>
+            <div class="menu-item" data-roles="WO_MANAGER">
+                <a href="workflow-wo-manager.html" class="menu-link">
+                    <span class="menu-icon"><i class="ki-outline ki-clipboard fs-2"></i></span>
+                    <span class="menu-title">Work Order</span>
+                </a>
+            </div>
+            <div class="menu-item" data-roles="TECHNICIAN">
+                <a href="workflow-technician.html" class="menu-link">
+                    <span class="menu-icon"><i class="ki-outline ki-home fs-2"></i></span>
+                    <span class="menu-title">Pekerjaan Saya</span>
+                </a>
+            </div>
+            <div class="menu-item" data-roles="SITE_MANAGER">
+                <a href="workflow-site-manager.html" class="menu-link">
+                    <span class="menu-icon"><i class="ki-outline ki-verify fs-2"></i></span>
+                    <span class="menu-title">Review & Approval</span>
+                </a>
+            </div>
+            <div class="menu-item" data-roles="WO_MANAGER,SITE_MANAGER">
+                <a href="facilities.html" class="menu-link">
+                    <span class="menu-icon"><i class="ki-outline ki-office-bag fs-2"></i></span>
+                    <span class="menu-title">Fasilitas</span>
+                </a>
+            </div>
+            <div class="menu-item" data-roles="WO_MANAGER,SITE_MANAGER">
+                <a href="users.html" class="menu-link">
+                    <span class="menu-icon"><i class="ki-outline ki-people fs-2"></i></span>
+                    <span class="menu-title">Manajemen Role</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--end::Sidebar Navs-->
+<!--begin::Sidebar Footer-->
+
+<div class="app-sidebar-footer px-6 pb-8" id="kt_app_sidebar_footer">
+    <div id="sidebar-user-info" class="mb-0"></div>
+</div>
+
+<!--end::Sidebar Footer-->
