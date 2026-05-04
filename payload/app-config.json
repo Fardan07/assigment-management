@@ -5,6 +5,6 @@
   "appName": "Facility Helpdesk",
   "appCode": "K5BK0H3ATT",
   "authBaseUrl": "https://restforge.dev/api/auth",
-  "apiBaseUrl": "http://10.218.11.116:3032/api/facility-helpdesk",
+  "apiBaseUrl": "http://192.168.1.24:3032/api/facility-helpdesk/",
   "idleTimeoutMinutes": 30
 }
