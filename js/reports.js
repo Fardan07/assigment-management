@@ -60,25 +60,34 @@
         }).join("");
     }
 
-    function applySearch(keyword) {
-        var q = (keyword || "").toLowerCase().trim();
-        if (!q) {
-            renderTable(allRows);
-            return;
-        }
+    function applyFilters() {
+        var searchInput = document.querySelector('[data-kt-report-table-filter="search"]');
+        var categoryFilter = document.querySelector('#filter-category');
+        var q = searchInput ? (searchInput.value || "").toLowerCase().trim() : "";
+        var catId = categoryFilter ? categoryFilter.value : "";
 
         var filtered = allRows.filter(function (r) {
-            return [
-                r.report_number,
-                r.title,
-                r.facility_name,
-                r.location_room,
-                r.location_detail,
-                r.urgency,
-                r.status
-            ].some(function (v) {
-                return String(v || "").toLowerCase().indexOf(q) !== -1;
-            });
+            var matchQ = true;
+            if (q) {
+                matchQ = [
+                    r.report_number,
+                    r.title,
+                    r.facility_name,
+                    r.location_room,
+                    r.location_detail,
+                    r.urgency,
+                    r.status
+                ].some(function (v) {
+                    return String(v || "").toLowerCase().indexOf(q) !== -1;
+                });
+            }
+
+            var matchCat = true;
+            if (catId) {
+                matchCat = String(r.category_id) === String(catId);
+            }
+
+            return matchQ && matchCat;
         });
 
         renderTable(filtered);
@@ -96,7 +105,12 @@
         }
 
         allRows = json.data || [];
-        renderTable(allRows);
+        allRows.sort(function(a, b) {
+            var dateA = new Date(a.created_at || 0).getTime();
+            var dateB = new Date(b.created_at || 0).getTime();
+            return dateB - dateA;
+        });
+        applyFilters();
     }
 
     async function loadCategories() {
@@ -119,11 +133,18 @@
         });
 
         var select = document.querySelector('select[name="category"]');
-        if (!select || categoryOptions.length === 0) return;
+        if (select && categoryOptions.length > 0) {
+            select.innerHTML = categoryOptions.map(function (c) {
+                return '<option value="' + escapeHtml(c.id) + '">' + escapeHtml(c.name) + '</option>';
+            }).join('');
+        }
 
-        select.innerHTML = categoryOptions.map(function (c) {
-            return '<option value="' + escapeHtml(c.id) + '">' + escapeHtml(c.name) + '</option>';
-        }).join('');
+        var filterSelect = document.querySelector('#filter-category');
+        if (filterSelect && categoryOptions.length > 0) {
+            filterSelect.innerHTML = '<option value="">Semua Kategori</option>' + categoryOptions.map(function (c) {
+                return '<option value="' + escapeHtml(c.id) + '">' + escapeHtml(c.name) + '</option>';
+            }).join('');
+        }
     }
 
     async function resolveReporterId() {
@@ -158,7 +179,14 @@
         var searchInput = document.querySelector('[data-kt-report-table-filter="search"]');
         if (searchInput) {
             searchInput.addEventListener("input", function (e) {
-                applySearch(e.target.value);
+                applyFilters();
+            });
+        }
+
+        var categoryFilter = document.querySelector('#filter-category');
+        if (categoryFilter) {
+            categoryFilter.addEventListener("change", function (e) {
+                applyFilters();
             });
         }
 

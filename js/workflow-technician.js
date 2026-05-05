@@ -237,6 +237,18 @@
                     document.querySelector('input[name="report_id"]').value = reportId;
                     document.getElementById("modal-report-title").textContent = report.title;
                     document.getElementById("modal-current-status").textContent = "Status Saat Ini: " + (report.status || "-");
+                    
+                    var selectStatus = document.querySelector('select[name="status"]');
+                    selectStatus.innerHTML = '';
+                    var currentStatus = String(report.status || "").toLowerCase();
+                    if (currentStatus === 'assigned') {
+                        selectStatus.innerHTML = '<option value="in_progress">Mulai Pekerjaan (In Progress)</option>';
+                    } else if (currentStatus === 'in_progress') {
+                        selectStatus.innerHTML = '<option value="pending_review">Serah untuk Review (Pending Review)</option>';
+                    } else {
+                        selectStatus.innerHTML = '<option value="">-- Invalid Status --</option>';
+                    }
+                    
                     modal.show();
                 }
             }
