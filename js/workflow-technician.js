@@ -270,18 +270,34 @@
 
     async function init() {
         if (!requireLogin()) return;
-        
         currentUser = window.auth.currentUser;
         if (!currentUser) {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Data pengguna tidak tersedia"
-            });
-            return;
+            // Try to fetch profile
+            try {
+                currentUser = await window.auth.getMe();
+            } catch (err) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Data pengguna tidak tersedia"
+                });
+                return;
+            }
         }
 
         await loadSidebar();
+
+        // Set role badge in header
+        try {
+            await syncCurrentUserRole();
+            currentUser = window.auth.currentUser;
+            var rawRole = resolveCurrentRole(currentUser);
+            var roleText = rawRole ? String(rawRole).toUpperCase() : '-';
+            var badgeEl = document.getElementById('current-role-badge');
+            if (badgeEl) badgeEl.textContent = 'ROLE: ' + roleText;
+        } catch (err) {
+            console.warn('Failed to set role badge:', err && err.message ? err.message : err);
+        }
         currentUser = window.auth.currentUser;
 
         var modalEl = document.getElementById("modal-update");

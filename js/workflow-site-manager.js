@@ -302,6 +302,22 @@
         if (!requireLogin()) return;
         await loadSidebar();
 
+        // Set role badge in header for Site Manager view
+        try {
+            var currentUser = window.auth ? window.auth.currentUser : null;
+            if (!currentUser) {
+                currentUser = await window.auth.getMe();
+            }
+            await syncCurrentUserRole();
+            currentUser = window.auth.currentUser;
+            var rawRole = resolveCurrentRole(currentUser);
+            var roleText = rawRole ? String(rawRole).toUpperCase() : '-';
+            var badgeEl = document.getElementById('current-role-badge');
+            if (badgeEl) badgeEl.textContent = 'ROLE: ' + roleText;
+        } catch (err) {
+            console.warn('Failed to set role badge:', err && err.message ? err.message : err);
+        }
+
         var modalEl = document.getElementById("modal-review");
         if (modalEl) {
             modal = new bootstrap.Modal(modalEl);

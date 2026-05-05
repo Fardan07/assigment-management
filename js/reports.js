@@ -360,6 +360,26 @@
         if (!requireLogin()) return;
         await loadSidebar();
 
+        // Pastikan badge role di header terisi dari data user/DB
+        try {
+            var currentUser = window.auth ? window.auth.currentUser : null;
+            if (!currentUser) {
+                // coba ambil profil dari server jika belum ada
+                currentUser = await window.auth.getMe();
+            }
+            // Sinkronkan peran dari tabel app_user jika tersedia
+            await syncCurrentUserRole();
+            currentUser = window.auth.currentUser;
+            var rawRole = resolveCurrentRole(currentUser);
+            var roleText = rawRole ? String(rawRole).toUpperCase() : '-';
+            var badgeEl = document.getElementById('current-role-badge');
+            if (badgeEl) {
+                badgeEl.textContent = 'ROLE: ' + roleText;
+            }
+        } catch (err) {
+            console.warn('Failed to resolve current role for header badge:', err && err.message ? err.message : err);
+        }
+
         var modalEl = document.getElementById("modal-report");
         if (modalEl) {
             modal = new bootstrap.Modal(modalEl);
