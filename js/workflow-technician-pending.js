@@ -8,6 +8,8 @@
         if (s === "assigned") return '<span class="badge badge-light-primary">Assigned</span>';
         if (s === "in_progress") return '<span class="badge badge-light-warning">In Progress</span>';
         if (s === "pending_review") return '<span class="badge badge-light-info">Pending Review</span>';
+        if (s === "approved") return '<span class="badge badge-light-success">Approved (Selesai)</span>';
+        if (s === "rejected") return '<span class="badge badge-light-danger">Rejected</span>';
         return '<span class="badge badge-light">' + escapeHtml(status || "-") + '</span>';
     }
 
@@ -35,7 +37,7 @@
                 "<td>" + escapeHtml(r.category_name || "-") + "</td>" +
                 "<td>" + statusBadge(r.status) + "</td>" +
                 "<td>" + urgencyBadge(r.urgency) + "</td>" +
-                "<td class=\"text-end\"><button class=\"btn btn-sm btn-light-primary btn-update\" data-report-id=\"" + escapeHtml(r.report_id || "") + "\">Update</button></td>" +
+                "<td class=\"text-end\"></td>" +
                 "</tr>";
         }).join("");
     }
@@ -129,7 +131,8 @@
                 var idMatched = currentUserId && assignedId === currentUserId;
                 var nameMatched = currentName && assignedName && assignedName === currentName;
 
-                return (idMatched || nameMatched) && String(r.status || "").toLowerCase() === "assigned";
+                var s = String(r.status || "").toLowerCase();
+                return (idMatched || nameMatched) && (s === "pending_review" || s === "approved" || s === "solved" || s === "closed");
             });
             renderTable(allRows);
         } catch (err) {
@@ -238,17 +241,10 @@
                     var selectStatus = document.querySelector('select[name="status"]');
                     selectStatus.innerHTML = '';
                     var currentStatus = String(report.status || "").toLowerCase();
-                    var noteWrapper = document.querySelector('textarea[name="technician_note"]').closest('.fv-row');
-                    var photoWrapper = document.querySelector('input[name="photo_after"]').closest('.fv-row');
-
                     if (currentStatus === 'assigned') {
                         selectStatus.innerHTML = '<option value="in_progress">Mulai Pekerjaan (In Progress)</option>';
-                        if (noteWrapper) noteWrapper.style.display = 'none';
-                        if (photoWrapper) photoWrapper.style.display = 'none';
                     } else if (currentStatus === 'in_progress') {
                         selectStatus.innerHTML = '<option value="pending_review">Serah untuk Review (Pending Review)</option>';
-                        if (noteWrapper) noteWrapper.style.display = 'block';
-                        if (photoWrapper) photoWrapper.style.display = 'block';
                     } else {
                         selectStatus.innerHTML = '<option value="">-- Invalid Status --</option>';
                     }

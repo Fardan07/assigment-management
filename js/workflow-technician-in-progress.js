@@ -129,7 +129,7 @@
                 var idMatched = currentUserId && assignedId === currentUserId;
                 var nameMatched = currentName && assignedName && assignedName === currentName;
 
-                return (idMatched || nameMatched) && String(r.status || "").toLowerCase() === "assigned";
+                return (idMatched || nameMatched) && String(r.status || "").toLowerCase() === "in_progress";
             });
             renderTable(allRows);
         } catch (err) {
