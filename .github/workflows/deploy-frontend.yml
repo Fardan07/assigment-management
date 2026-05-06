@@ -20,10 +20,7 @@ jobs:
           script_stop: true
           script: |
             set -e
-            if [ ! -d "${{ secrets.DEPLOY_PATH }}" ]; then
-              echo "DEPLOY_PATH does not exist: ${{ secrets.DEPLOY_PATH }}"
-              exit 1
-            fi
+            mkdir -p "${{ secrets.DEPLOY_PATH }}"
             cd "${{ secrets.DEPLOY_PATH }}"
             if [ ! -d .git ]; then
               git clone --branch main --single-branch https://github.com/${{ github.repository }} .
