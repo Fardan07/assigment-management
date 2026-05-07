@@ -62,6 +62,20 @@
 
     function applyFilters() {
         var searchInput = document.querySelector('[data-kt-report-table-filter="search"]');
+        var toggleManual = document.getElementById('toggle-manual-asset');
+        if(toggleManual) {
+            toggleManual.addEventListener('change', function() {
+                var isManual = this.checked;
+                document.getElementById('wrapper-asset-select').style.display = isManual ? 'none' : 'block';
+                document.getElementById('wrapper-asset-manual').style.display = isManual ? 'block' : 'none';
+                if(isManual) {
+                    $('#select_facility_id').val(null).trigger('change');
+                } else {
+                    document.querySelector('input[name="manual_facility_name"]').value = '';
+                }
+            });
+        }
+        
         var categoryFilter = document.querySelector('#filter-category');
         var q = searchInput ? (searchInput.value || "").toLowerCase().trim() : "";
         var catId = categoryFilter ? categoryFilter.value : "";
@@ -175,6 +189,28 @@
         }
     }
 
+    function resetReportForm() {
+        var form = document.getElementById("form-report");
+        if (form) {
+            form.reset();
+        }
+        
+        // Reset select2 value if exists
+        if ($.fn.select2 && $('#facility-select').length) {
+            $('#facility-select').val(null).trigger('change');
+        }
+
+        var photoInput = document.querySelector('input[name="photo_before"]');
+        if (photoInput) {
+            photoInput.value = "";
+        }
+
+        var preview = document.getElementById("photo-preview");
+        if (preview) {
+            preview.innerHTML = "";
+        }
+    }
+
     function bindEvents() {
         var searchInput = document.querySelector('[data-kt-report-table-filter="search"]');
         if (searchInput) {
@@ -193,11 +229,15 @@
         var addButton = document.getElementById("btn-add-report");
         if (addButton && modal) {
             addButton.addEventListener("click", function () {
-                var form = document.getElementById("form-report");
-                if (form) form.reset();
-                var preview = document.getElementById("photo-preview");
-                if (preview) preview.innerHTML = "";
+                resetReportForm();
                 modal.show();
+            });
+        }
+
+        var modalEl = document.getElementById("modal-report");
+        if (modalEl) {
+            modalEl.addEventListener("hidden.bs.modal", function () {
+                resetReportForm();
             });
         }
 
@@ -232,6 +272,37 @@
                 submitReport();
             });
         }
+        
+        // Initialize facility select using Select2 with AJAX for search
+        if ($.fn.select2 && $('#facility-select').length) {
+            $('#facility-select').select2({
+                dropdownParent: $('#modal-report'),
+                ajax: {
+                    url: APP_CONFIG.apiBaseUrl + '/facility-asset/lookup',
+                    dataType: 'json',
+                    delay: 250,
+                    headers: {
+                        'Authorization': 'Bearer ' + (window.auth ? window.auth.getAccessToken() : ''),
+                        'X-Request-Mode': 'dynamic'
+                    },
+                    data: function (params) {
+                        return {
+                            q: params.term || '', // search term
+                            limit: 50
+                        };
+                    },
+                    processResults: function (data, params) {
+                        // Jika data dibungkus dalam properti data (contoh: { success: true, data: [...] })
+                        var items = $.isArray(data) ? data : (data.data || []);
+                        return {
+                            results: items
+                        };
+                    },
+                    cache: true
+                },
+                minimumInputLength: 0
+            });
+        }
     }
 
     async function submitReport() {
@@ -248,6 +319,7 @@
             category_id: resolvedCategoryId,
             urgency: mapUrgency(formData.get("urgency")),
             description: formData.get("description"),
+            facility_id: formData.get("facility_id") || null,
             location_floor: String(formData.get("location_floor") || "").trim() || null,
             location_room: String(formData.get("location_room") || "").trim() || null,
             location_detail: String(formData.get("location_detail") || "").trim() || null,
@@ -298,6 +370,7 @@
                 title: "Berhasil",
                 text: "Laporan berhasil dibuat" + (createdData.report_number ? (" dengan nomor: " + createdData.report_number) : "")
             }).then(function () {
+                resetReportForm();
                 modal.hide();
                 loadReports();
             });
@@ -324,7 +397,8 @@
         if (/^[0-9a-fA-F-]{36}$/.test(categoryName)) return categoryName;
 
         var selected = categoryOptions.find(function (c) {
-            return String(c.name || '').toLowerCase() === String(categoryName).toLowerCase() ||
+            return String(c.id || '').toLowerCase() === String(categoryName).toLowerCase() ||
+                String(c.name || '').toLowerCase() === String(categoryName).toLowerCase() ||
                 String(c.code || '').toLowerCase() === String(categoryName).toLowerCase();
         });
         if (selected) return selected.id;
@@ -335,12 +409,14 @@
             "Air": "cat-003",
             "Furniture": "cat-004"
         };
-        return categoryMap[categoryName] || null;
+        return categoryMap[categoryName] || categoryName;
     }
 
     function mapUrgency(urgencyText) {
-        if (urgencyText === "Sedang") return "medium";
-        if (urgencyText === "Darurat") return "high";
+        urgencyText = String(urgencyText || "").toLowerCase().trim();
+        if (urgencyText.includes("sedang") || urgencyText.includes("penting")) return "medium";
+        if (urgencyText.includes("darurat") || urgencyText.includes("segera")) return "high";
+        if (urgencyText.includes("normal")) return "low";
         return "low";
     }
 
@@ -354,6 +430,32 @@
         var ss = String(now.getSeconds()).padStart(2, "0");
         var ms = String(now.getMilliseconds()).padStart(3, "0");
         return "RPT-" + yyyy + mm + dd + "-" + hh + mi + ss + ms;
+    }
+
+    async function loadFacilitiesForDropdown() {
+        try {
+            var response = await window.auth.fetch(APP_CONFIG.apiBaseUrl + "/facility-asset/datatables", {
+                method: "POST",
+                body: JSON.stringify({ draw: 1, start: 0, length: 1000 })
+            });
+            var json = await response.json();
+            var data = json.data || [];
+            
+            // Sort by alphabet
+            data.sort((a,b) => (a.facility_name || '').localeCompare(b.facility_name || ''));
+            
+            var sel = document.getElementById('select_facility_id');
+            if(sel) {
+                var opts = '<option value=""></option>';
+                data.forEach(d => {
+                    var label = (d.facility_name || '-') + ' (' + (d.barcode || d.facility_code || '-') + ') - ' + (d.room_name || 'Tanpa Ruangan');
+                    opts += '<option value="'+d.facility_id+'">' + escapeHtml(label) + '</option>';
+                });
+                sel.innerHTML = opts;
+            }
+        } catch(e) {
+            console.warn('Gagal load facilities', e);
+        }
     }
 
     async function init() {
@@ -390,6 +492,7 @@
         try {
             await loadCategories();
             await resolveReporterId();
+        await loadFacilitiesForDropdown();
             await loadReports();
         } catch (err) {
             Swal.fire({

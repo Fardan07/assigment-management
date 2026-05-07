@@ -60,8 +60,11 @@
                                                     <input type="text" class="form-control form-control-solid w-250px ps-13" placeholder="Cari aset fasilitas..." />
                                                 </div>
                                             </div>
-                                            <div class="card-toolbar">
-                                                <button class="btn btn-primary" id="btn-add-facility">
+                                            <div class="card-toolbar d-flex gap-2">
+<button class="btn btn-info" id="btn-print-all-barcode" onclick="printAllBarcodes()">
+<i class="ki-outline ki-printer fs-2"></i> Cetak Semua Barcode
+</button>
+<button class="btn btn-primary" id="btn-add-facility">
                                                     <i class="ki-outline ki-plus fs-2"></i> Tambah Aset
                                                 </button>
                                             </div>
@@ -74,6 +77,7 @@
                                                             <th class="ps-4 min-w-100px rounded-start">ID Aset</th>
                                                             <th class="min-w-200px">Nama Fasilitas</th>
                                                             <th class="min-w-150px">Lokasi Gedung</th>
+                                                            <th class="min-w-100px text-center">Barcode</th>
                                                             <th class="min-w-100px text-center">Kondisi</th>
                                                             <th class="min-w-100px text-end pe-4 rounded-end">Opsi</th>
                                                         </tr>
@@ -112,7 +116,159 @@
         </div>
     </div>
 
+    <!-- Modal Print Barcode -->
+    <div class="modal fade" tabindex="-1" id="modal_print_barcode">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Cetak Barcode</h3>
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="ki-outline ki-cross fs-1"></i>
+                    </div>
+                </div>
+                <div class="modal-body text-center" id="print_barcode_area">
+                    <h4 id="barcode_asset_name" class="mb-5"></h4>
+                    <svg id="barcode_canvas"></svg>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" onclick="printBarcode()">Cetak</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Modal Facility Form -->
+    <div class="modal fade" tabindex="-1" id="modal_facility_form">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <form id="form_facility" onsubmit="event.preventDefault(); saveFacility();">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Tambah Aset</h3>
+                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="ki-outline ki-cross fs-1"></i>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-5">
+                            <div class="col-md-6">
+                                <label class="required form-label">Nama Fasilitas</label>
+                                <input type="text" class="form-control" name="facility_name" required placeholder="Contoh: Meja Rapat" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="required form-label">Tipe Kategori</label>
+                                <select class="form-select" name="facility_type" required>
+                                    <option value="">Pilih Tipe</option>
+                                    <option value="Furniture">Furniture</option>
+                                    <option value="AC/Pendingin">AC/Pendingin</option>
+                                    <option value="Elektronik">Elektronik</option>
+                                    <option value="Alat Tulis">Alat Tulis</option>
+                                    <option value="Jaringan">Jaringan</option>
+                                    <option value="Plumbing">Plumbing</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Lantai</label>
+                                <input type="text" class="form-control" name="floor_level" placeholder="Contoh: Lantai 2" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Ruangan</label>
+                                <input type="text" class="form-control" name="room_name" placeholder="Contoh: Ruang Meeting A" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Brand</label>
+                                <input type="text" class="form-control" name="brand" placeholder="Contoh: Informa" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Model</label>
+                                <input type="text" class="form-control" name="model" placeholder="Model tipe barang" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Serial Number</label>
+                                <input type="text" class="form-control" name="serial_number" placeholder="SN-XXXX" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="required form-label">Kondisi</label>
+                                <select class="form-select" name="condition_status" required>
+                                    <option value="good">Good</option>
+                                    <option value="need_repair">Need Repair</option>
+                                    <option value="broken">Broken</option>
+                                    <option value="maintenance">Maintenance</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Catatan Tambahan</label>
+                                <textarea class="form-control" name="notes" rows="2" placeholder="Catatan"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary" id="btn_save_facility">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detail Aset -->
+    <div class="modal fade" tabindex="-1" id="modal_facility_detail">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Detail Aset: <span id="detail_facility_code" class="text-primary"></span></h3>
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="ki-outline ki-cross fs-1"></i>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-7">
+                        <label class="col-lg-4 fw-semibold text-muted">Nama Fasilitas</label>
+                        <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" id="detail_facility_name"></span></div>
+                    </div>
+                    <div class="row mb-7">
+                        <label class="col-lg-4 fw-semibold text-muted">Tipe Kategori</label>
+                        <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" id="detail_facility_type"></span></div>
+                    </div>
+                    <div class="row mb-7">
+                        <label class="col-lg-4 fw-semibold text-muted">Kondisi</label>
+                        <div class="col-lg-8" id="detail_condition_status"></div>
+                    </div>
+                    <div class="row mb-7">
+                        <label class="col-lg-4 fw-semibold text-muted">Lokasi</label>
+                        <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" id="detail_location"></span></div>
+                    </div>
+                    <div class="row mb-7">
+                        <label class="col-lg-4 fw-semibold text-muted">Brand / Model</label>
+                        <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" id="detail_brand_model"></span></div>
+                    </div>
+                    <div class="row mb-7">
+                        <label class="col-lg-4 fw-semibold text-muted">Serial Number</label>
+                        <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" id="detail_serial_number"></span></div>
+                    </div>
+                    <div class="row mb-7">
+                        <label class="col-lg-4 fw-semibold text-muted">Barcode SN</label>
+                        <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" id="detail_barcode"></span></div>
+                    </div>
+                    <div class="row mb-7">
+                        <label class="col-lg-4 fw-semibold text-muted">Catatan</label>
+                        <div class="col-lg-8"><span class="fw-bold fs-6 text-gray-800" id="detail_notes"></span></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-warning" id="btn_edit_trigger">Edit Fasilitas</button>
+                    <button type="button" class="btn btn-danger" id="btn_delete_trigger">Hapus Fasilitas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
     <script src="assets/plugins/global/plugins.bundle.js"></script>
+
     <script src="assets/js/scripts.bundle.js"></script>
     <script src="js/config.js"></script>
     <script src="js/auth.js"></script>

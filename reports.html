@@ -89,6 +89,23 @@
                 <div class="modal-body py-10 px-lg-17">
                     <form id="form-report" class="form">
                         <div class="fv-row mb-7">
+                            <div class="d-flex flex-stack mb-2">
+                                <label class="fs-6 fw-bold">Pilih Aset Fasilitas</label>
+                                <div class="form-check form-switch form-check-custom form-check-solid form-check-sm">
+                                    <input class="form-check-input" type="checkbox" id="toggle-manual-asset" value="1"/>
+                                    <label class="form-check-label text-muted fs-7" for="toggle-manual-asset">Data tidak ada? (Manual)</label>
+                                </div>
+                            </div>
+                            <div id="wrapper-asset-select">
+                                <select class="form-select form-control-solid" name="facility_id" id="select_facility_id" data-control="select2" data-dropdown-parent="#modal-report" data-placeholder="Ketik untuk mencari aset (abjad/serial)...">
+                                    <option value="">Pilih Aset...</option>
+                                </select>
+                            </div>
+                            <div id="wrapper-asset-manual" style="display: none;">
+                                <input type="text" class="form-control form-control-solid" name="manual_facility_name" placeholder="Ketik nama aset secara manual..." />
+                            </div>
+                        </div>
+                        <div class="fv-row mb-7">
                             <label class="required fs-6 fw-bold mb-2">Judul Kerusakan</label>
                             <input type="text" class="form-control form-control-solid" name="title" placeholder="Contoh: AC Mati Total" />
                         </div>
@@ -114,7 +131,14 @@
                         <div class="fv-row mb-7">
                             <label class="required fs-6 fw-bold mb-2">Deskripsi Detail</label>
                             <textarea class="form-control form-control-solid" name="description" rows="3"></textarea>
-                        </div>
+                        </div>                          
+                          <div class="fv-row mb-7">
+                              <label class="fs-6 fw-bold mb-2">Pilih Aset/Fasilitas (Opsional)</label>
+                              <select class="form-select form-control-solid" name="facility_id" id="facility-select" data-control="select2" data-placeholder="Cari nama aset, kode atau ruangan..." data-allow-clear="true">
+                                  <option></option>
+                              </select>
+                              <div class="text-muted fs-7 mt-2">Jika aset ditemukan, Lantai dan Ruangan akan otomatis terisi oleh sistem. Jika tidak, silakan isi manual di bawah ini.</div>
+                          </div>
                         <div class="row g-9 mb-7">
                             <div class="col-md-4 fv-row">
                                 <label class="fs-6 fw-bold mb-2">Lokasi Lantai</label>

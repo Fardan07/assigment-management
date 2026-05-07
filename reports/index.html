@@ -138,7 +138,13 @@
                             <label class="required fs-6 fw-semibold mb-2">Deskripsi Detail</label>
                             <textarea class="form-control form-control-solid rounded-3" name="description" rows="4" placeholder="Jelaskan secara detail mengenai kerusakan yang terjadi..."></textarea>
                         </div>
-                        
+                                                  <div class="fv-row mb-8">
+                              <label class="fs-6 fw-semibold mb-2">Pilih Aset/Fasilitas (Opsional)</label>
+                              <select class="form-select form-control-solid rounded-3" name="facility_id" id="facility-select" data-control="select2" data-placeholder="Ketik untuk mencari aset (kode atau ruang)..." data-allow-clear="true">
+                                  <option></option>
+                              </select>
+                              <div class="text-muted fs-7 mt-2">Pilih aset otomatis mengisi ruangan dan lantai. Jika tidak ada, isi lokasi manual di bawah.</div>
+                          </div>
                         <div class="row g-8 mb-8">
                             <div class="col-md-4 fv-row">
                                 <label class="fs-6 fw-semibold mb-2">Lokasi Lantai</label>
