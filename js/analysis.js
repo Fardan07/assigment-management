@@ -51,7 +51,7 @@
         rows.forEach(function (r) {
             var col = document.createElement('div');
             col.className = 'col-md-4';
-            col.innerHTML = '\n                <div class="card p-4 h-100">\n                    <div class="d-flex justify-content-between align-items-start">\n                        <div>\n                            <div class="fw-bold">' + escapeHtml(r.name) + '</div>\n                            <div class="fs-8 text-muted">' + escapeHtml(r.device_id) + '</div>\n                        </div>\n                        <div class="text-end">\n                            <div class="fs-6 fw-bolder">' + formatNumber(r.power, 2) + ' W</div>\n                            <div class="fs-8 text-muted">' + formatNumber(r.energy, 2) + ' kWh</div>\n                        </div>\n                    </div>\n                    <div class="mt-3">\n                        <div class="d-flex gap-3">\n                            <div class="text-muted fs-8">V: ' + formatNumber(r.voltage,2) + ' V</div>\n                            <div class="text-muted fs-8">I: ' + formatNumber(r.current,2) + ' A</div>\n                            <div class="text-muted fs-8">PF: ' + formatNumber(r.power_factor,2) + '</div>\n                        </div>\n                    </div>\n                </div>\n            ';
+            col.innerHTML = '\n                <div class="card p-4 h-100">\n                    <div class="d-flex justify-content-between align-items-start">\n                        <div>\n                            <div class="fw-bold">' + escapeHtml(r.name) + '</div>\n                            <div class="fs-8 text-muted">' + escapeHtml(r.device_id) + '</div>\n                        </div>\n                        <div class="text-end">\n                            <div class="fs-6 fw-bolder">' + formatNumber(r.power, 2) + ' W</div>\n                            <div class="fs-8 text-muted">' + formatNumber(r.energy, 2) + ' kWh</div>\n                        </div>\n                    </div>\n                    <div class="mt-3">\n                        <div class="d-flex gap-3">\n                            <div class="text-muted fs-8">V: ' + formatNumber(r.voltage,2) + ' V</div>\n                            <div class="text-muted fs-8">I: ' + formatNumber(r.current,2) + ' A</div>\n                        </div>\n                    </div>\n                </div>\n            ';
             container.appendChild(col);
         });
     }
@@ -67,8 +67,6 @@
                 '<td>' + formatNumber(r.current,2) + '</td>' +
                 '<td>' + formatNumber(r.power,2) + '</td>' +
                 '<td>' + formatNumber(r.energy,2) + '</td>' +
-                '<td>' + formatNumber(r.power_factor,2) + '</td>' +
-                '<td>' + escapeHtml(String(r.status || '-')) + '</td>' +
                 '<td>' + escapeHtml(String(r.last_seen || '-')) + '</td>' +
                 '</tr>';
         }).join('');
