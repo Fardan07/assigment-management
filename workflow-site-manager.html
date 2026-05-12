@@ -33,6 +33,52 @@
                         <div id="kt_app_content" class="app-content flex-column-fluid">
                             <div id="kt_app_content_container" class="app-container container-fluid">
                                 
+                                <!-- IoT Dashboard Section -->
+                                <div class="card shadow-sm mb-5">
+                                    <div class="card-header border-0 pt-6">
+                                        <div class="card-title">
+                                            <h3 class="fw-bold fs-3 my-0">IoT Energy Monitoring</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body py-4">
+                                        <div class="row g-5 mb-5">
+                                            <div class="col-md-4">
+                                                <div class="bg-gray-100 p-5 rounded">
+                                                    <div class="text-gray-500 fw-semibold fs-6 mb-2">Voltage</div>
+                                                    <div class="fw-bold fs-2 text-gray-800" id="iot-voltage">0 V</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="bg-gray-100 p-5 rounded">
+                                                    <div class="text-gray-500 fw-semibold fs-6 mb-2">Power</div>
+                                                    <div class="fw-bold fs-2 text-gray-800" id="iot-power">0 W</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="bg-gray-100 p-5 rounded">
+                                                    <div class="text-gray-500 fw-semibold fs-6 mb-2">Energy</div>
+                                                    <div class="fw-bold fs-2 text-gray-800" id="iot-energy">0 kWh</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <table class="table align-middle table-row-dashed fs-6 gy-5">
+                                            <thead>
+                                                <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0 bg-light">
+                                                    <th class="ps-4 min-w-100px rounded-start">ID</th>
+                                                    <th class="min-w-100px">Voltage</th>
+                                                    <th class="min-w-100px">Power</th>
+                                                    <th class="min-w-100px">Energy</th>
+                                                    <th class="min-w-150px rounded-end">Time</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-gray-600 fw-semibold" id="iot-tableBody">
+                                                <!-- IoT data rows will go here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
                                 <div class="card shadow-sm">
                                     <div class="card-header border-0 pt-6">
                                         <div class="card-title">
@@ -141,5 +187,42 @@
     <script src="js/auth.js"></script>
     <script src="js/common.js?v=20260417e"></script>
     <script src="js/workflow-site-manager.js?v=20260417e"></script>
+
+    <script>
+        async function loadIotData() {
+            try {
+                const response = await fetch('https://z-learn.my.id/api/data');
+                const data = await response.json();
+
+                if (data.length > 0) {
+                    document.getElementById('iot-voltage').innerText = data[0].voltage + ' V';
+                    document.getElementById('iot-power').innerText = data[0].power + ' W';
+                    document.getElementById('iot-energy').innerText = data[0].energy + ' kWh';
+                }
+
+                let rows = '';
+                data.forEach(item => {
+                    rows += `
+                        <tr>
+                            <td class="ps-4">${item.id}</td>
+                            <td>${item.voltage} V</td>
+                            <td>${item.power} W</td>
+                            <td>${item.energy} kWh</td>
+                            <td>${new Date(item.created_at).toLocaleString('id-ID')}</td>
+                        </tr>
+                    `;
+                });
+
+                document.getElementById('iot-tableBody').innerHTML = rows;
+            } catch (err) {
+                console.error("Gagal mengambil data IoT:", err);
+            }
+        }
+
+        // Muat data pertama kali
+        loadIotData();
+        // Update setiap 3 detik
+        setInterval(loadIotData, 3000);
+    </script>
 </body>
 </html>

@@ -206,8 +206,18 @@
 
             updateData.report_id = reportId;
 
+            var currentUser = window.auth ? window.auth.currentUser : null;
+            var headers = { 'Content-Type': 'application/json' };
+            try {
+                if (currentUser) {
+                    headers['x-user-role'] = resolveCurrentRole(currentUser);
+                    headers['x-user-id'] = String(currentUser.user_id || '');
+                }
+            } catch (e) { /* ignore */ }
+
             var response = await window.auth.fetch(APP_CONFIG.apiBaseUrl + "/maintenance-report/update", {
                 method: "POST",
+                headers: headers,
                 body: JSON.stringify(updateData)
             });
 

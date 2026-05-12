@@ -119,9 +119,11 @@
                 throw new Error(json.message || "Gagal memuat data work order");
             }
 
-            // Filter for submitted status only
+            // Filter for submitted status only and sort newest first
             allRows = (json.data || []).filter(function (r) {
                 return String(r.status || "").toLowerCase() === "submitted";
+            }).sort(function(a, b) {
+                return new Date(b.reported_at || b.created_at || 0) - new Date(a.reported_at || a.created_at || 0);
             });
             renderTable(allRows);
         } catch (err) {
@@ -169,8 +171,20 @@
 
     async function assignReport(reportId, technicianId, note) {
         try {
+            var currentUser = window.auth ? window.auth.currentUser : null;
+            var headers = {
+                'Content-Type': 'application/json'
+            };
+            try {
+                if (currentUser) {
+                    headers['x-user-role'] = resolveCurrentRole(currentUser);
+                    headers['x-user-id'] = String(currentUser.user_id || '');
+                }
+            } catch (e) { /* ignore */ }
+
             var response = await window.auth.fetch(APP_CONFIG.apiBaseUrl + "/maintenance-report/update", {
                 method: "POST",
+                headers: headers,
                 body: JSON.stringify({
                     report_id: reportId,
                     assigned_to_id: technicianId,

@@ -679,6 +679,14 @@ router.post('/update', async (req, res) => {
       }
 
       if (requestRole === 'TECHNICIAN' && requestUserId && String(oldData.assigned_to_id || '') !== requestUserId) {
+        // Debug logging to help diagnose mismatched user IDs during workflow transitions
+        try {
+          console.warn('[WORKFLOW DEBUG] TECHNICIAN transition blocked. Headers:', {
+            requestRole: requestRole,
+            requestUserId: requestUserId
+          }, 'AssignedToId:', String(oldData.assigned_to_id || ''));
+        } catch (e) { /* ignore logging errors */ }
+
         return res.status(403).json({
           success: false,
           error: 'Forbidden',

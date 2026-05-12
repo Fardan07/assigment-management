@@ -70,33 +70,22 @@
                                         <div class="card-title">
                                             <h4 class="fw-bold">Data Sensor Lampu</h4>
                                         </div>
+                                        <div class="card-toolbar">
+                                            <span class="badge badge-light-primary fw-bold fs-6">Realtime Data</span>
+                                        </div>
                                     </div>
                                     <div class="card-body py-4">
-                                        <div class="row mb-4 align-items-center">
-                                            <div class="col-md-6">
-                                                <label class="fs-7 fw-semibold">Pilih Device</label>
-                                                <select id="device-select" class="form-select form-select-solid"></select>
-                                            </div>
-                                            <div class="col-md-6 text-end">
-                                                <label class="fs-7 fw-semibold">Periode</label>
-                                                <div class="d-inline-block ms-2">30 hari terakhir</div>
-                                            </div>
-                                        </div>
                                         <div class="mb-4">
                                             <canvas id="usage-chart" height="120"></canvas>
                                         </div>
                                         <table class="table align-middle table-row-dashed fs-6 gy-5" id="iot-table">
                                             <thead>
                                                 <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
-                                                    <th>Device ID</th>
-                                                    <th>Nama Lampu</th>
+                                                    <th>ID</th>
                                                     <th>Voltage (V)</th>
-                                                    <th>Current (A)</th>
                                                     <th>Power (W)</th>
                                                     <th>Energy (kWh)</th>
-                                                    <th>Power Factor</th>
-                                                    <th>Status</th>
-                                                    <th>Last Seen</th>
+                                                    <th>Time</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="text-gray-600 fw-semibold" id="iot-table-body">

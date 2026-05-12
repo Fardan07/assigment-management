@@ -142,7 +142,7 @@
         }
     }
 
-    async function updateReport(reportId, status, technicianNote, photoFile) {
+    async function updateReport(reportId, status, technicianNote, photoFile, actorUserId) {
         try {
             var updateData = {
                 status: status,
@@ -152,6 +152,7 @@
             if (status === "in_progress") {
                 updateData.started_at = new Date().toISOString();
             } else if (status === "pending_review") {
+                updateData.resolution_note = technicianNote;
                 updateData.solved_at = new Date().toISOString();
                 if (photoFile) {
                     updateData.photo_after_url = await fileToDataUrl(photoFile);
@@ -160,8 +161,18 @@
 
             updateData.report_id = reportId;
 
+            var currentUser = window.auth ? window.auth.currentUser : null;
+            var headers = { 'Content-Type': 'application/json' };
+            try {
+                if (currentUser) {
+                    headers['x-user-role'] = resolveCurrentRole(currentUser);
+                    headers['x-user-id'] = String(actorUserId || currentUser.user_id || '');
+                }
+            } catch (e) { /* ignore */ }
+
             var response = await window.auth.fetch(APP_CONFIG.apiBaseUrl + "/maintenance-report/update", {
                 method: "POST",
+                headers: headers,
                 body: JSON.stringify(updateData)
             });
 
@@ -267,7 +278,18 @@
                 var technicianNote = document.querySelector('textarea[name="technician_note"]').value;
                 var photoFile = document.querySelector('input[name="photo_after"]').files[0];
 
-                updateReport(reportId, status, technicianNote, photoFile);
+                if (status === "pending_review" && !String(technicianNote || "").trim()) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Validasi",
+                        text: "Catatan teknisi wajib diisi sebelum serah review"
+                    });
+                    return;
+                }
+
+                var report = allRows.find(function (r) { return r.report_id === reportId; });
+                var actorUserId = report && report.assigned_to_id ? String(report.assigned_to_id) : '';
+                updateReport(reportId, status, technicianNote, photoFile, actorUserId);
             });
         }
     }

@@ -48,12 +48,48 @@
         if (!container) return;
         container.innerHTML = '';
 
-        rows.forEach(function (r) {
-            var col = document.createElement('div');
-            col.className = 'col-md-4';
-            col.innerHTML = '\n                <div class="card p-4 h-100">\n                    <div class="d-flex justify-content-between align-items-start">\n                        <div>\n                            <div class="fw-bold">' + escapeHtml(r.name) + '</div>\n                            <div class="fs-8 text-muted">' + escapeHtml(r.device_id) + '</div>\n                        </div>\n                        <div class="text-end">\n                            <div class="fs-6 fw-bolder">' + formatNumber(r.power, 2) + ' W</div>\n                            <div class="fs-8 text-muted">' + formatNumber(r.energy, 2) + ' kWh</div>\n                        </div>\n                    </div>\n                    <div class="mt-3">\n                        <div class="d-flex gap-3">\n                            <div class="text-muted fs-8">V: ' + formatNumber(r.voltage,2) + ' V</div>\n                            <div class="text-muted fs-8">I: ' + formatNumber(r.current,2) + ' A</div>\n                            <div class="text-muted fs-8">PF: ' + formatNumber(r.power_factor,2) + '</div>\n                        </div>\n                    </div>\n                </div>\n            ';
-            container.appendChild(col);
-        });
+        if (rows.length === 0) return;
+        
+        // Ambil data terbaru (index 0)
+        var latest = rows[0];
+        
+        // Estimasi per jam dan hari (dalam kWh)
+        // Jika power dalam Watt konstan: (power * hours) / 1000 
+        var est1Jam = (latest.power * 1) / 1000;
+        var est1Hari = (latest.power * 24) / 1000;
+
+        var col = document.createElement('div');
+        col.className = 'col-md-12';
+        col.innerHTML = `
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card p-4 h-100 bg-light-primary border-primary border border-dashed rounded">
+                        <div class="fw-bold fs-4 text-gray-800 mb-4">Sensor IoT Utama</div>
+                        <div class="d-flex flex-column gap-2">
+                            <div class="fs-6 d-flex justify-content-between"><span class="text-muted">Voltage:</span> <span class="fw-bolder">${formatNumber(latest.voltage, 2)} V</span></div>
+                            <div class="fs-6 d-flex justify-content-between"><span class="text-muted">Power:</span> <span class="fw-bolder">${formatNumber(latest.power, 2)} W</span></div>
+                            <div class="fs-6 d-flex justify-content-between"><span class="text-muted">Energy:</span> <span class="fw-bolder">${formatNumber(latest.energy, 2)} kWh</span></div>
+                        </div>
+                        <div class="text-muted fs-8 mt-4 pt-3 border-top border-gray-300">Terakhir Update: ${new Date(latest.created_at).toLocaleString('id-ID')}</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-4 h-100 bg-light-success border-success border border-dashed rounded d-flex flex-column justify-content-center align-items-center text-center">
+                        <div class="text-success fw-bold fs-5 mb-2">Estimasi Penggunaan 1 Jam</div>
+                        <div class="fw-bolder fs-1 text-gray-800">${formatNumber(est1Jam, 4)} <span class="fs-4 text-muted">kWh</span></div>
+                        <div class="text-muted fs-8 mt-2">Berdasarkan Power saat ini</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-4 h-100 bg-light-warning border-warning border border-dashed rounded d-flex flex-column justify-content-center align-items-center text-center">
+                        <div class="text-warning fw-bold fs-5 mb-2">Estimasi Penggunaan 1 Hari</div>
+                        <div class="fw-bolder fs-1 text-gray-800">${formatNumber(est1Hari, 4)} <span class="fs-4 text-muted">kWh</span></div>
+                        <div class="text-muted fs-8 mt-2">Berdasarkan Power saat ini</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.appendChild(col);
     }
 
     function renderTable(rows) {
@@ -61,36 +97,25 @@
         if (!tbody) return;
         tbody.innerHTML = rows.map(function (r) {
             return '<tr>' +
-                '<td>' + escapeHtml(r.device_id) + '</td>' +
-                '<td>' + escapeHtml(r.name) + '</td>' +
-                '<td>' + formatNumber(r.voltage,2) + '</td>' +
-                '<td>' + formatNumber(r.current,2) + '</td>' +
-                '<td>' + formatNumber(r.power,2) + '</td>' +
-                '<td>' + formatNumber(r.energy,2) + '</td>' +
-                '<td>' + formatNumber(r.power_factor,2) + '</td>' +
-                '<td>' + escapeHtml(String(r.status || '-')) + '</td>' +
-                '<td>' + escapeHtml(String(r.last_seen || '-')) + '</td>' +
+                '<td>' + escapeHtml(String(r.id)) + '</td>' +
+                '<td>' + formatNumber(r.voltage, 2) + '</td>' +
+                '<td>' + formatNumber(r.power, 2) + '</td>' +
+                '<td>' + formatNumber(r.energy, 2) + '</td>' +
+                '<td>' + escapeHtml(new Date(r.created_at).toLocaleString('id-ID')) + '</td>' +
                 '</tr>';
         }).join('');
     }
 
     async function fetchIoTData() {
-        var endpoint = (APP_CONFIG && APP_CONFIG.apiBaseUrl) ? APP_CONFIG.apiBaseUrl + '/iot/lamp-data' : '/iot/lamp-data';
+        var endpoint = 'https://z-learn.my.id/api/data';
         try {
-            if (window.auth && window.auth.fetch) {
-                var resp = await window.auth.fetch(endpoint, { method: 'GET' });
-                var json = await resp.json();
-                if (!resp.ok) throw new Error(json.message || 'Failed to fetch');
-                return (json.data || json);
-            } else {
-                var r = await fetch(endpoint, { method: 'GET' });
-                var j = await r.json();
-                if (!r.ok) throw new Error(j.message || 'Failed to fetch');
-                return (j.data || j);
-            }
+            var r = await fetch(endpoint, { method: 'GET' });
+            var j = await r.json();
+            if (!r.ok) throw new Error('Failed to fetch');
+            return j;
         } catch (err) {
-            console.warn('IoT fetch failed, using mock data:', err && err.message ? err.message : err);
-            return mockData();
+            console.warn('IoT fetch failed:', err);
+            return [];
         }
     }
 
@@ -116,86 +141,37 @@
         if (btn) btn.addEventListener('click', loadAndRender);
         await loadAndRender();
 
-        // setup device selector and chart
-        setupDeviceSelector();
+        // Fetch data periodically
+        setInterval(loadAndRender, 3000);
     }
 
     async function loadAndRender() {
         var rows = await fetchIoTData();
         renderCards(rows);
         renderTable(rows);
-        populateDeviceSelect(rows);
-        // render initial chart for first device
+        
+        // render initial chart 
         if (rows && rows.length > 0) {
-            renderDeviceUsage(rows[0].device_id);
-        }
-    }
-
-    function populateDeviceSelect(rows) {
-        var sel = document.getElementById('device-select');
-        if (!sel) return;
-        sel.innerHTML = '';
-        rows.forEach(function (r, idx) {
-            var opt = document.createElement('option');
-            opt.value = r.device_id;
-            opt.textContent = (r.name || r.device_id);
-            sel.appendChild(opt);
-        });
-        sel.addEventListener('change', function () {
-            renderDeviceUsage(this.value);
-        });
-    }
-
-    function generateMockHistory(deviceId, days) {
-        days = days || 30;
-        var data = [];
-        for (var i = days - 1; i >= 0; i--) {
-            var dt = new Date();
-            dt.setDate(dt.getDate() - i);
-            // simple pseudo-random but stable-ish values using deviceId
-            var base = (deviceId.charCodeAt(deviceId.length - 1) || 1) * 5;
-            var power = base + Math.abs(Math.sin(i / 3)) * 100 * (0.6 + Math.random() * 0.8);
-            data.push({
-                date: dt.toISOString().slice(0, 10),
-                power: Number(power.toFixed(2))
-            });
-        }
-        return data;
-    }
-
-    async function fetchDeviceHistory(deviceId, days) {
-        var endpoint = (APP_CONFIG && APP_CONFIG.apiBaseUrl) ? APP_CONFIG.apiBaseUrl + '/iot/lamp-history?device_id=' + encodeURIComponent(deviceId) + '&days=' + (days || 30) : '/iot/lamp-history?device_id=' + encodeURIComponent(deviceId) + '&days=' + (days || 30);
-        try {
-            if (window.auth && window.auth.fetch) {
-                var resp = await window.auth.fetch(endpoint);
-                var json = await resp.json();
-                if (!resp.ok) throw new Error(json.message || 'Failed to fetch history');
-                return (json.data || json);
-            } else {
-                var r = await fetch(endpoint);
-                var j = await r.json();
-                if (!r.ok) throw new Error(j.message || 'Failed to fetch history');
-                return (j.data || j);
-            }
-        } catch (err) {
-            console.warn('History fetch failed, generating mock history:', err && err.message ? err.message : err);
-            return generateMockHistory(deviceId, days || 30);
+            renderDeviceUsage(rows);
         }
     }
 
     var usageChart = null;
 
-    function setupDeviceSelector() {
-        var sel = document.getElementById('device-select');
-        if (!sel) return;
-        // if already populated, do nothing (populateDeviceSelect will add change listener)
-    }
+    async function renderDeviceUsage(rows) {
+        if (!rows || rows.length === 0) return;
+        
+        // Map the real-time data for the chart (datetime string and power)
+        // The API returns newest first, so we reverse it for chart display (left to right = oldest to newest)
+        var chartData = rows.map(function(item) {
+            return {
+                date: new Date(item.created_at).toLocaleTimeString('id-ID'), // e.g. "20:00:00"
+                power: item.power
+            };
+        }).reverse();
 
-    async function renderDeviceUsage(deviceId) {
-        if (!deviceId) return;
-        var hist = await fetchDeviceHistory(deviceId, 30);
-        var labels = hist.map(function (h) { return h.date; });
-        var data = hist.map(function (h) { return Number(h.power || 0); });
+        var labels = chartData.map(function (h) { return h.date; });
+        var data = chartData.map(function (h) { return Number(h.power || 0); });
 
         var ctx = document.getElementById('usage-chart').getContext('2d');
         if (usageChart) {
@@ -210,7 +186,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Power (W)',
+                    label: 'Power (W) - Realtime',
                     data: data,
                     borderColor: '#4e73df',
                     backgroundColor: 'rgba(78,115,223,0.05)',
@@ -224,9 +200,16 @@
                 maintainAspectRatio: false,
                 scales: {
                     x: { display: true },
-                    y: { display: true, beginAtZero: true }
+                    y: { 
+                        display: true, 
+                        beginAtZero: true,
+                        suggestedMax: function(context) {
+                            return Math.max(...data) * 1.5;
+                        }
+                    }
                 },
-                plugins: { legend: { display: true } }
+                plugins: { legend: { display: true } },
+                animation: { duration: 0 } // nonaktifkan animasi agar update real-time lebih smooth
             }
         });
     }
